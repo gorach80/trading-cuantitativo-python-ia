@@ -325,7 +325,7 @@ if __name__ == "__main__":
           <h3>🏛️ Recursos y Herramientas a tu Disposición:</h3>
           <ul>
             <li><b>Sección de Preguntas y Respuestas (Q&A):</b> Canal de soporte técnico directo con el instructor.</li>
-            <li><b>Código Fuente Descargable:</b> Scripts autónomos `.py` para cada clase probados en Python 3.10+.</li>
+            <li><b>Código Fuente Descargable:</b> Scripts autónomos <code>.py</code> para cada clase probados en Python 3.10+.</li>
             <li><b>Plataforma Web Interactiva:</b> Entorno en vivo para simular backtesting y ejecutar código en tiempo real.</li>
           </ul>
 
@@ -1113,7 +1113,7 @@ if __name__ == "__main__":
         return int(shares)
 
     def get_summary(self):
-        return f"Activo Quant: {self.ticker} | Precio: ${self.price} | Tipo: {self.asset_type}"
+        return "Activo Quant: " + str(self.ticker) + " | Precio: $" + str(self.price) + " | Tipo: " + str(self.asset_type)
 
 asset = QuantAsset("AAPL", 185.50)
 print(asset.get_summary())
