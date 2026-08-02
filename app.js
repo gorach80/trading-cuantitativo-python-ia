@@ -708,9 +708,63 @@ if __name__ == "__main__":
         dur: "03:28",
         theory: `
           <h3>Transcripción Magistral y Desarrollo Teórico Completo (03:28 min)</h3>
-          <p>Eliminación de sesgos emocionales (miedo, avaricia, FOMO) delegando la ejecución a reglas rígidas en Python.</p>
+          <p>En esta lección de 3 minutos y 28 segundos abordamos el análisis de las <b>Finanzas Conductuales (Behavioral Finance)</b> y cómo la automatización cuantitativa elimina los sesgos emocionales que destruyen las cuentas discrecionales.</p>
+
+          <div class="theory-callout">
+            <b>🧠 Los 4 Sesgos Emocionales Principales:</b><br>
+            1. <b>Aversión a la Pérdida (Teoría de la Perspectiva):</b> El dolor psicológico de perder $1,000 es 2.25 veces superior al placer de ganar la misma cantidad.<br>
+            2. <b>Sesgo de Disposición:</b> Vender rápidamente las posiciones ganadoras por miedo a perder el beneficio y mantener las posiciones perdedoras esperando un rebote que nunca llega.<br>
+            3. <b>Efecto FOMO (Fear of Missing Out):</b> Entrar tarde al mercado en máximos históricos impulsado por euforia.<br>
+            4. <b>Sesgo de Confirmación:</b> Buscar únicamente noticias que respalden una posición abierta perdedora.
+          </div>
+
+          <h3>Modelado de Aversión a la Pérdida (Kahneman & Tversky):</h3>
+          <div class="formula-card">
+            <span class="formula-title">📐 Función de Valor de la Teoría de la Perspectiva (Prospect Theory):</span>
+            <span class="formula-expr">v(x) = x<sup>α</sup> (si x ≥ 0)  |  v(x) = -λ (-x)<sup>β</sup> (si x < 0, con λ ≈ 2.25)</span>
+          </div>
         `,
-        code: `print("Trading Algorítmico: Ejecución 100% Racional Sin Interferencia Emocional")`
+        code: `# clase_14_psicologia.py - Código Completo de la Clase 14
+class PsychologicalBiasEliminator:
+    def __init__(self, initial_capital):
+        self.capital = initial_capital
+        self.lambda_loss_aversion = 2.25 # Coeficiente de Aversión a la Pérdida
+
+    def simulate_discretionary_trader(self, drawdown_pct):
+        print("  [DISCRECIONAL] Sufriendo caida del " + str(round(drawdown_pct*100, 1)) + "%...")
+        # El trader humano congela stops por aversión a la pérdida y amplía la caída
+        discretionary_loss = self.capital * (drawdown_pct * self.lambda_loss_aversion)
+        remaining = max(self.capital - discretionary_loss, 0.0)
+        return remaining
+
+    def simulate_automated_system(self, drawdown_pct, stop_loss_limit=0.05):
+        print("  [SISTEMA IA QUANT] Ejecutando Stop Loss rigido al " + str(round(stop_loss_limit*100, 1)) + "%...")
+        system_loss = self.capital * min(drawdown_pct, stop_loss_limit)
+        remaining = self.capital - system_loss
+        return remaining
+
+    def run_comparative_experiment(self):
+        print("=====================================================================")
+        print("  EVALUACIÓN DE ELIMINACIÓN DE SESGOS EMOCIONALES EN TRADING         ")
+        print("=====================================================================")
+        drawdown = 0.12 # 12% Caída de mercado
+        
+        disc_final = self.simulate_discretionary_trader(drawdown)
+        quant_final = self.simulate_automated_system(drawdown, stop_loss_limit=0.05)
+        
+        print("---------------------------------------------------------------------")
+        print("  Capital Inicial            : $" + str(self.capital) + " USD")
+        print("  Capital Final Discrecional : $" + str(round(disc_final, 2)) + " USD (Perjudicado por Sesgo)")
+        print("  Capital Final Bot Quant    : $" + str(round(quant_final, 2)) + " USD (Protegido por Algoritmo)")
+        print("  AHORRO DE CAPITAL POR IA   : $" + str(round(quant_final - disc_final, 2)) + " USD")
+        print("=====================================================================")
+
+def ejecutar_clase_14():
+    eliminator = PsychologicalBiasEliminator(initial_capital=100000.0)
+    eliminator.run_comparative_experiment()
+
+if __name__ == "__main__":
+    ejecutar_clase_14()`
       },
       {
         id: 15,
