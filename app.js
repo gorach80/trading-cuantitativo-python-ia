@@ -772,27 +772,63 @@ if __name__ == "__main__":
         dur: "06:18",
         theory: `
           <h3>Transcripción Magistral y Desarrollo Teórico Completo (06:18 min)</h3>
-          <p>Las 4 etapas del bucle algorítmico: 1. Listening -> 2. Signal Generation -> 3. Risk Sizing -> 4. Order Execution (<50ms latencia).</p>
+          <p>En esta lección de 6 minutos y 18 segundos analizamos la arquitectura de software y el <b>Bucle de Eventos en Tiempo Real (Real-Time Event Loop)</b> que controla un bot de trading algorítmico automatizado.</p>
+
+          <div class="theory-callout">
+            <b>🔄 Las 4 Etapas del Bucle Algorítmico:</b><br>
+            1. <b>Escucha Continua de Eventos (Event Listener):</b> Captura de ticks de precios o actualizaciones del libro de órdenes Nivel 2 en milisegundos.<br>
+            2. <b>Generador de Señales (Signal Generator):</b> Evaluación instantánea de indicadores técnicos y probabilidad de inferencia del modelo ML.<br>
+            3. <b>Dimensionamiento por Riesgo (Risk Sizing):</b> Cálculo del tamaño óptimo del lote o cantidad de acciones a operar.<br>
+            4. <b>Ejecutor y Enrutador de Órdenes (Order Execution Engine):</b> Envío de órdenes límite o mercado a la API del broker con latencias ultra-bajas (&lt;50ms).
+          </div>
+
+          <h3>Métrica de Latencia de Ejecución:</h3>
+          <div class="formula-card">
+            <span class="formula-title">📐 Latencia Total del Bucle Algorítmico:</span>
+            <span class="formula-expr">Latencia<sub>Total</sub> = t<sub>Red API</sub> + t<sub>Inferencia Modelo</sub> + t<sub>Riesgo</sub> + t<sub>Enrutamiento Broker</sub></span>
+          </div>
         `,
-        code: `import time
+        code: `# clase_15_estructuras.py - Código Completo de la Clase 15
+import time
 from quant_trading.execution import MockBrokerAPI
 
-class TradingBotAutomated:
-    def __init__(self, broker):
-        self.broker = broker
+class TradingBotAutomatedEngine:
+    def __init__(self, broker_name="Interactive Brokers"):
+        self.broker = MockBrokerAPI(initial_balance=100000.0, broker_name=broker_name)
+        self.is_running = False
 
-    def start_loop(self, ticker):
-        print(f"[BOT AUTOMATED] Conectando a broker para operar {ticker}...")
+    def start_event_loop(self, ticker, iterations=3):
+        print("=====================================================================")
+        print("  INICIANDO BUCLE DE EVENTOS AUTOMATIZADO - BOT TRADING IA")
+        print("=====================================================================")
         self.broker.connect()
-        for tick in range(1, 4):
-            print(f" -> [TICK {tick}] Escuchando precios y calculando señales...")
-            time.sleep(0.1)
-        order = self.broker.place_order(ticker, "BUY", 50, 150.0)
-        print(f"[BOT EXECUTED] Orden Enviada: {order['order_id']} | Status: {order['status']}")
+        self.is_running = True
+        
+        for tick in range(1, iterations + 1):
+            t_start = time.time()
+            print("  -> [TICK " + str(tick) + "] Escuchando precios y calculando señales...")
+            time.sleep(0.02) # Simulación de latencia I/O de red
+            
+            # Etapa de Señal y Riesgo
+            signal = "BUY"
+            qty = 50
+            price = 185.50 + (tick * 0.25)
+            
+            # Etapa de Enrutamiento de Orden
+            order = self.broker.place_order(ticker, signal, qty, price)
+            t_lat = round((time.time() - t_start) * 1000, 2)
+            print("     [EJECUCIÓN BROKER] ID: " + str(order["order_id"]) + " | Qty: " + str(qty) + " " + ticker + " @ $" + str(price) + " | Latencia: " + str(t_lat) + "ms")
+        
+        print("=====================================================================")
+        print("  ESTADO FINAL DEL BOT: " + str(self.broker.get_account_summary()))
+        print("=====================================================================")
 
-broker = MockBrokerAPI(100000.0)
-bot = TradingBotAutomated(broker)
-bot.start_loop("AAPL")`
+def ejecutar_clase_15():
+    bot = TradingBotAutomatedEngine()
+    bot.start_event_loop("AAPL", iterations=3)
+
+if __name__ == "__main__":
+    ejecutar_clase_15()`
       },
       {
         id: 16,
