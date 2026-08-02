@@ -1,4 +1,4 @@
-/* app.js: Fixed Logic & Rich Lesson Content for Quant Trading Course Platform */
+/* app.js: Fixed & Validated Logic for Quant Trading Course Platform */
 
 // Full Course Data Structure (29 Sections, 193 Classes)
 const COURSE_DATA = [
@@ -97,7 +97,7 @@ print("Perfil: Ingeniero Financiero & Master en IA Aplicada")`
         dur: "02:09",
         theory: `
           <h3>Solución de Problemas Técnicos (02:09 min)</h3>
-          <p>Resolución de errores comunes con librerías `yfinance`, `scikit-learn`, `pandas` y gestión de virtualenvs.</p>
+          <p>Resolución de errores comunes con librerías 'yfinance', 'scikit-learn', 'pandas' y gestión de virtualenvs.</p>
         `,
         code: `import pandas, numpy, sklearn, yfinance
 print("Librerías principales verificadas correctamente sin errores.")`
@@ -155,7 +155,7 @@ for step in workflow:
         dur: "01:33",
         theory: `
           <h3>Buenas Prácticas Quant (01:33 min)</h3>
-          <p>Código modular en archivos `.py`, documentación clara y prevención del sobreajuste (*overfitting*).</p>
+          <p>Código modular en archivos '.py', documentación clara y prevención del sobreajuste (*overfitting*).</p>
         `,
         code: `print("Regla de Oro Quant: Evitar el Overfitting y Pruebas Out-of-Sample Rigurosas")`
       },
@@ -417,31 +417,39 @@ print(f"Retornos Logarítmicos: {np.round(log_returns, 4)}")`
 // App State
 let currentSectionIdx = 0;
 let currentLessonIdx = 0;
-let completedLessons = new Set([0]);
+let completedLessons = new Set(["0-0"]);
 let backtestChart = null;
 
 // DOM Elements
-const sectionsAccordion = document.getElementById('sections-accordion');
-const currentLessonTitle = document.getElementById('current-lesson-title');
-const currentLessonDur = document.getElementById('current-lesson-dur');
-const lessonBreadcrumbs = document.getElementById('lesson-breadcrumbs');
-const theoryHeading = document.getElementById('theory-heading');
-const theoryContent = document.getElementById('theory-content');
-const codeEditor = document.getElementById('python-code-editor');
-const terminalOutput = document.getElementById('terminal-output');
-const progressText = document.getElementById('progress-text');
-const progressFill = document.getElementById('progress-fill');
-const classSearch = document.getElementById('class-search');
+let sectionsAccordion, currentLessonTitle, currentLessonDur, lessonBreadcrumbs;
+let theoryHeading, theoryContent, codeEditor, terminalOutput, progressText, progressFill, classSearch;
+let runCodeBtn, simBacktestBtn, prevLessonBtn, nextLessonBtn, completeLessonBtn;
 
-// Buttons
-const runCodeBtn = document.getElementById('run-code-btn');
-const simBacktestBtn = document.getElementById('sim-backtest-btn');
-const prevLessonBtn = document.getElementById('prev-lesson-btn');
-const nextLessonBtn = document.getElementById('next-lesson-btn');
-const completeLessonBtn = document.getElementById('complete-lesson-btn');
+function cacheDomElements() {
+  sectionsAccordion = document.getElementById('sections-accordion');
+  currentLessonTitle = document.getElementById('current-lesson-title');
+  currentLessonDur = document.getElementById('current-lesson-dur');
+  lessonBreadcrumbs = document.getElementById('lesson-breadcrumbs');
+  theoryHeading = document.getElementById('theory-heading');
+  theoryContent = document.getElementById('theory-content');
+  codeEditor = document.getElementById('python-code-editor');
+  terminalOutput = document.getElementById('terminal-output');
+  progressText = document.getElementById('progress-text');
+  progressFill = document.getElementById('progress-fill');
+  classSearch = document.getElementById('class-search');
+
+  runCodeBtn = document.getElementById('run-code-btn');
+  simBacktestBtn = document.getElementById('sim-backtest-btn');
+  prevLessonBtn = document.getElementById('prev-lesson-btn');
+  nextLessonBtn = document.getElementById('next-lesson-btn');
+  completeLessonBtn = document.getElementById('complete-lesson-btn');
+}
 
 // Initialize App
 function initApp() {
+  cacheDomElements();
+  if (!sectionsAccordion) return;
+  
   renderSyllabus();
   loadLesson(0, 0);
   setupTabs();
@@ -451,6 +459,7 @@ function initApp() {
 
 // Render Syllabus Accordion
 function renderSyllabus(filterText = '') {
+  if (!sectionsAccordion) return;
   sectionsAccordion.innerHTML = '';
 
   COURSE_DATA.forEach((section, secIdx) => {
@@ -470,8 +479,23 @@ function renderSyllabus(filterText = '') {
       return acc + parseInt(parts[0]) + (parseInt(parts[1]) / 60);
     }, 0);
 
+    const lessonsHtml = (filterText ? filteredLessons : section.lessons).map((lesson, lesIdx) => {
+      const globalId = `${secIdx}-${lesIdx}`;
+      const isComp = completedLessons.has(globalId);
+      const isActive = secIdx === currentSectionIdx && lesIdx === currentLessonIdx;
+      return `
+        <div class="lesson-item ${isActive ? 'active' : ''} ${isComp ? 'completed' : ''}" data-sec="${secIdx}" data-les="${lesIdx}">
+          <div class="lesson-left">
+            <div class="lesson-check">${isComp ? '✓' : ''}</div>
+            <span class="lesson-title">${lesson.title}</span>
+          </div>
+          <span class="lesson-dur">${lesson.dur}</span>
+        </div>
+      `;
+    }).join('');
+
     sectionCard.innerHTML = `
-      <div class="section-header" onclick="toggleSection(${secIdx})">
+      <div class="section-header" data-sec="${secIdx}">
         <div class="section-title-box">
           <span class="section-num">Sección ${section.id}</span>
           <span class="section-name">${section.title}</span>
@@ -482,24 +506,27 @@ function renderSyllabus(filterText = '') {
         </div>
       </div>
       <div class="lessons-list">
-        ${(filterText ? filteredLessons : section.lessons).map((lesson, lesIdx) => {
-          const globalId = `${secIdx}-${lesIdx}`;
-          const isComp = completedLessons.has(globalId);
-          const isActive = secIdx === currentSectionIdx && lesIdx === currentLessonIdx;
-          return `
-            <div class="lesson-item ${isActive ? 'active' : ''} ${isComp ? 'completed' : ''}" onclick="selectLesson(${secIdx}, ${lesIdx})">
-              <div class="lesson-left">
-                <div class="lesson-check">${isComp ? '✓' : ''}</div>
-                <span class="lesson-title">${lesson.title}</span>
-              </div>
-              <span class="lesson-dur">${lesson.dur}</span>
-            </div>
-          `;
-        }).join('')}
+        ${lessonsHtml}
       </div>
     `;
 
     sectionsAccordion.appendChild(sectionCard);
+  });
+
+  // Attach Click Listeners
+  document.querySelectorAll('.section-header').forEach(header => {
+    header.addEventListener('click', (e) => {
+      const secIdx = parseInt(header.dataset.sec);
+      toggleSection(secIdx);
+    });
+  });
+
+  document.querySelectorAll('.lesson-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      const secIdx = parseInt(item.dataset.sec);
+      const lesIdx = parseInt(item.dataset.les);
+      selectLesson(secIdx, lesIdx);
+    });
   });
 }
 
@@ -513,21 +540,23 @@ function toggleSection(secIdx) {
 function selectLesson(secIdx, lesIdx) {
   currentSectionIdx = secIdx;
   currentLessonIdx = lesIdx;
-  renderSyllabus(classSearch.value);
+  renderSyllabus(classSearch ? classSearch.value : '');
   loadLesson(secIdx, lesIdx);
 }
 
 function loadLesson(secIdx, lesIdx) {
   const section = COURSE_DATA[secIdx];
+  if (!section) return;
   const lesson = section.lessons[lesIdx];
+  if (!lesson) return;
 
-  lessonBreadcrumbs.textContent = `Sección ${section.id}: ${section.title} • Clase ${lesIdx + 1}`;
-  currentLessonTitle.textContent = lesson.title;
-  currentLessonDur.textContent = lesson.dur;
-  theoryHeading.textContent = `Lección Magistral: ${lesson.title}`;
-  theoryContent.innerHTML = lesson.theory;
-  codeEditor.value = lesson.code || "# Código de la clase\nprint('Ejecutando algoritmo quant...')";
-  terminalOutput.textContent = `// Listo para ejecutar ${lesson.title} en Python 3.10...\nPresiona 'Ejecutar Código Python' para compilar el algoritmo.`;
+  if (lessonBreadcrumbs) lessonBreadcrumbs.textContent = `Sección ${section.id}: ${section.title} • Clase ${lesIdx + 1}`;
+  if (currentLessonTitle) currentLessonTitle.textContent = lesson.title;
+  if (currentLessonDur) currentLessonDur.textContent = lesson.dur;
+  if (theoryHeading) theoryHeading.textContent = `Lección Magistral: ${lesson.title}`;
+  if (theoryContent) theoryContent.innerHTML = lesson.theory;
+  if (codeEditor) codeEditor.value = lesson.code || "# Código de la clase\nprint('Ejecutando algoritmo quant...')";
+  if (terminalOutput) terminalOutput.textContent = `// Listo para ejecutar ${lesson.title} en Python 3.10...\nPresiona 'Ejecutar Código Python' para compilar el algoritmo.`;
 }
 
 // Tab Switching
@@ -542,101 +571,125 @@ function setupTabs() {
 
       btn.classList.add('active');
       const targetId = `tab-${btn.dataset.tab}`;
-      document.getElementById(targetId).classList.add('active');
+      const targetPane = document.getElementById(targetId);
+      if (targetPane) targetPane.classList.add('active');
     });
   });
 }
 
 // Event Listeners
 function setupEventListeners() {
-  classSearch.addEventListener('input', (e) => {
-    renderSyllabus(e.target.value);
-  });
+  if (classSearch) {
+    classSearch.addEventListener('input', (e) => {
+      renderSyllabus(e.target.value);
+    });
+  }
 
-  runCodeBtn.addEventListener('click', () => {
-    terminalOutput.textContent = ">>> Compilando y ejecutando algoritmo cuantitativo en Python 3.10...\n";
-    setTimeout(() => {
-      try {
-        const code = codeEditor.value;
-        let simulatedLogs = `====================================================\n`;
-        simulatedLogs += `  EJECUCIÓN EMPÍRICA EN VIVO - QUANT TRADING PLATFORM\n`;
-        simulatedLogs += `====================================================\n`;
-        
-        if (code.includes('quant_trading') || code.includes('MockBrokerAPI')) {
-          simulatedLogs += `[SUCCESS] Módulo Quant cargado correctamente.\n`;
-          simulatedLogs += `[BROKER API] Conexión establecida con Broker API.\n`;
+  if (runCodeBtn) {
+    runCodeBtn.addEventListener('click', () => {
+      if (terminalOutput) terminalOutput.textContent = ">>> Compilando y ejecutando algoritmo cuantitativo en Python 3.10...\n";
+      setTimeout(() => {
+        try {
+          const code = codeEditor ? codeEditor.value : '';
+          let simulatedLogs = `====================================================\n`;
+          simulatedLogs += `  EJECUCIÓN EMPÍRICA EN VIVO - QUANT TRADING PLATFORM\n`;
+          simulatedLogs += `====================================================\n`;
+          
+          if (code.includes('quant_trading') || code.includes('MockBrokerAPI')) {
+            simulatedLogs += `[SUCCESS] Módulo Quant cargado correctamente.\n`;
+            simulatedLogs += `[BROKER API] Conexión establecida con Broker API.\n`;
+          }
+
+          if (code.includes('TradingBotAutomated') || code.includes('BUY')) {
+            simulatedLogs += `[BOT AUTOMATED] Escuchando Ticks en Tiempo Real...\n`;
+            simulatedLogs += `[SIGNAL] Señal Cuantitativa Detectada: BUY (COMPRA ALCISTA)\n`;
+            simulatedLogs += `[EXECUTION] Orden Ejecutada: ORD-778912 | Qty: 50 acciones AAPL\n`;
+          }
+
+          if (code.includes('PerformanceMetrics') || code.includes('Sharpe')) {
+            simulatedLogs += `[KPI REPORT] CAGR: 14.20% | Sharpe: 0.88 | MDD: -18.40%\n`;
+          }
+
+          simulatedLogs += `\nOutput de Consola:\n`;
+          simulatedLogs += `> Python 3.10.14 Process Exited with Code 0 (Success).\n`;
+
+          if (terminalOutput) terminalOutput.textContent += simulatedLogs;
+        } catch (err) {
+          if (terminalOutput) terminalOutput.textContent += `[ERROR] Error de ejecución: ${err.message}`;
         }
+      }, 350);
+    });
+  }
 
-        if (code.includes('TradingBotAutomated') || code.includes('BUY')) {
-          simulatedLogs += `[BOT AUTOMATED] Escuchando Ticks en Tiempo Real...\n`;
-          simulatedLogs += `[SIGNAL] Señal Cuantitativa Detectada: BUY (COMPRA ALCISTA)\n`;
-          simulatedLogs += `[EXECUTION] Orden Ejecutada: ORD-778912 | Qty: 50 acciones AAPL\n`;
-        }
+  if (completeLessonBtn) {
+    completeLessonBtn.addEventListener('click', () => {
+      const globalId = `${currentSectionIdx}-${currentLessonIdx}`;
+      completedLessons.add(globalId);
+      updateProgress();
+      renderSyllabus(classSearch ? classSearch.value : '');
+    });
+  }
 
-        if (code.includes('PerformanceMetrics') || code.includes('Sharpe')) {
-          simulatedLogs += `[KPI REPORT] CAGR: 14.20% | Sharpe: 0.88 | MDD: -18.40%\n`;
-        }
-
-        simulatedLogs += `\nOutput de Consola:\n`;
-        simulatedLogs += `> Python 3.10.14 Process Exited with Code 0 (Success).\n`;
-
-        terminalOutput.textContent += simulatedLogs;
-      } catch (err) {
-        terminalOutput.textContent += `[ERROR] Error de ejecución: ${err.message}`;
+  if (prevLessonBtn) {
+    prevLessonBtn.addEventListener('click', () => {
+      if (currentLessonIdx > 0) {
+        selectLesson(currentSectionIdx, currentLessonIdx - 1);
+      } else if (currentSectionIdx > 0) {
+        const prevSec = currentSectionIdx - 1;
+        selectLesson(prevSec, COURSE_DATA[prevSec].lessons.length - 1);
       }
-    }, 350);
-  });
+    });
+  }
 
-  completeLessonBtn.addEventListener('click', () => {
-    const globalId = `${currentSectionIdx}-${currentLessonIdx}`;
-    completedLessons.add(globalId);
-    updateProgress();
-    renderSyllabus(classSearch.value);
-  });
+  if (nextLessonBtn) {
+    nextLessonBtn.addEventListener('click', () => {
+      const currSec = COURSE_DATA[currentSectionIdx];
+      if (currentLessonIdx < currSec.lessons.length - 1) {
+        selectLesson(currentSectionIdx, currentLessonIdx + 1);
+      } else if (currentSectionIdx < COURSE_DATA.length - 1) {
+        selectLesson(currentSectionIdx + 1, 0);
+      }
+    });
+  }
 
-  prevLessonBtn.addEventListener('click', () => {
-    if (currentLessonIdx > 0) {
-      selectLesson(currentSectionIdx, currentLessonIdx - 1);
-    } else if (currentSectionIdx > 0) {
-      const prevSec = currentSectionIdx - 1;
-      selectLesson(prevSec, COURSE_DATA[prevSec].lessons.length - 1);
-    }
-  });
+  const sliderCap = document.getElementById('slider-capital');
+  const sliderComm = document.getElementById('slider-commission');
+  const sliderSlip = document.getElementById('slider-slippage');
 
-  nextLessonBtn.addEventListener('click', () => {
-    const currSec = COURSE_DATA[currentSectionIdx];
-    if (currentLessonIdx < currSec.lessons.length - 1) {
-      selectLesson(currentSectionIdx, currentLessonIdx + 1);
-    } else if (currentSectionIdx < COURSE_DATA.length - 1) {
-      selectLesson(currentSectionIdx + 1, 0);
-    }
-  });
+  if (sliderCap) {
+    sliderCap.addEventListener('input', (e) => {
+      document.getElementById('capital-val').textContent = `$${parseInt(e.target.value).toLocaleString()}`;
+    });
+  }
+  if (sliderComm) {
+    sliderComm.addEventListener('input', (e) => {
+      document.getElementById('commission-val').textContent = `${parseFloat(e.target.value).toFixed(2)}%`;
+    });
+  }
+  if (sliderSlip) {
+    sliderSlip.addEventListener('input', (e) => {
+      document.getElementById('slippage-val').textContent = `${parseFloat(e.target.value).toFixed(2)}%`;
+    });
+  }
 
-  // Slider inputs in backtest tab
-  document.getElementById('slider-capital').addEventListener('input', (e) => {
-    document.getElementById('capital-val').textContent = `$${parseInt(e.target.value).toLocaleString()}`;
-  });
-  document.getElementById('slider-commission').addEventListener('input', (e) => {
-    document.getElementById('commission-val').textContent = `${parseFloat(e.target.value).toFixed(2)}%`;
-  });
-  document.getElementById('slider-slippage').addEventListener('input', (e) => {
-    document.getElementById('slippage-val').textContent = `${parseFloat(e.target.value).toFixed(2)}%`;
-  });
-
-  simBacktestBtn.addEventListener('click', updateBacktestSimulation);
+  if (simBacktestBtn) {
+    simBacktestBtn.addEventListener('click', updateBacktestSimulation);
+  }
 }
 
 function updateProgress() {
   const totalClasses = 193;
   const completedCount = completedLessons.size;
   const pct = Math.round((completedCount / totalClasses) * 100);
-  progressText.textContent = `${pct}% Completado (${completedCount}/${totalClasses} clases)`;
-  progressFill.style.width = `${Math.max(5, pct)}%`;
+  if (progressText) progressText.textContent = `${pct}% Completado (${completedCount}/${totalClasses} clases)`;
+  if (progressFill) progressFill.style.width = `${Math.max(5, pct)}%`;
 }
 
 // Chart.js Backtest Chart Simulator
 function initBacktestChart() {
-  const ctx = document.getElementById('backtestChart').getContext('2d');
+  const chartCanvas = document.getElementById('backtestChart');
+  if (!chartCanvas || typeof Chart === 'undefined') return;
+  const ctx = chartCanvas.getContext('2d');
   
   const labels = ['2022', '2023', '2024', '2025', '2026'];
   const strategyData = [100000, 118000, 136000, 152000, 175000];
@@ -710,4 +763,8 @@ function updateBacktestSimulation() {
 }
 
 // Start App when DOM ready
-document.addEventListener('DOMContentLoaded', initApp);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
