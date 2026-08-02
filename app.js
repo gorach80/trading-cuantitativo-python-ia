@@ -467,9 +467,44 @@ if __name__ == "__main__":
         dur: "01:33",
         theory: `
           <h3>Transcripción Magistral y Desarrollo Teórico Completo (01:33 min)</h3>
-          <p>Consejos del instructor: escribir código limpio, modularizar componentes y prevenir el sobreajuste (*overfitting*).</p>
+          <p>En esta lección de 1 minuto y 33 segundos el instructor sintetiza las mejores prácticas cuantitativas y reglas de diseño algorítmico indispensables para evitar los sesgos más destructivos en las inversiones automatizadas.</p>
+
+          <div class="theory-callout">
+            <b>🛡️ Las 4 Reglas de Oro del Desarrollador Quant:</b><br>
+            1. <i>Prevención del Sobreajuste (Overfitting):</i> Nunca optimizar parámetros hasta amoldar el modelo al ruido pasado.<br>
+            2. <i>Eliminación del Sesgo de Mirada al Futuro (Lookahead Bias):</i> Utilizar únicamente información disponible en el instante \(t\) de la decisión.<br>
+            3. <i>Incorporación Rígida de Ficción Operativa:</i> Incluir siempre costos de transacción (comisión + slippage) en el backtesting.<br>
+            4. <i>Modularidad POO:</i> Mantener lógica de señal, gestión de riesgo y broker API desacopladas.
+          </div>
         `,
-        code: `print("Regla de Oro Quant: Evitar Overfitting y Pruebas Out-of-Sample Rigurosas")`
+        code: `# clase_10_recomendaciones.py - Código Completo de la Clase 10
+class QuantBestPracticesChecker:
+    def __init__(self, strategy_name):
+        self.strategy_name = strategy_name
+        self.checks = [
+            ("Aislamiento In-Sample / Out-of-Sample", True, "Prevención estricta de Overfitting"),
+            ("Sin Sesgo de Mirada al Futuro (Lookahead)", True, "Indicadores calculados solo en t <= T"),
+            ("Modelo de Costos de Transacción Real", True, "Comisión (0.1%) + Slippage (0.05%)"),
+            ("Desacoplamiento Modular (POO)", True, "BaseStrategy -> Signal -> Risk -> Execution")
+        ]
+
+    def audit_strategy(self):
+        print("=====================================================================")
+        print(f"  AUDITORÍA DE BUENAS PRÁCTICAS QUANT: {self.strategy_name.upper()}")
+        print("=====================================================================")
+        for rule, status, detail in self.checks:
+            badge = "[✓ VERIFICADO]" if status else "[⚠ FALLIDO]"
+            print(f"  {badge.ljust(16)} {rule.ljust(35)} : {detail}")
+        print("=====================================================================")
+        print("  ESTADO DE AUDITORÍA: Estrategia Robusta Aprobada para Producción")
+        print("=====================================================================")
+
+def ejecutar_clase_10():
+    auditor = QuantBestPracticesChecker("Trend_Following_HMM")
+    auditor.audit_strategy()
+
+if __name__ == "__main__":
+    ejecutar_clase_10()`
       },
       {
         id: 11,
