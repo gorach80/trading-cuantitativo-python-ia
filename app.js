@@ -512,9 +512,55 @@ if __name__ == "__main__":
         dur: "05:06",
         theory: `
           <h3>Transcripción Magistral y Desarrollo Teórico Completo (05:06 min)</h3>
-          <p>Estructura de mercados globales: oferta, demanda, liquidez, creadores de mercado (*Market Makers*) y libros de órdenes.</p>
+          <p>En esta lección de 5 minutos y 6 segundos exploramos la estructura de los <b>Mercados Financieros Globales</b> y la mecánica de formación de precios a nivel de microestructura.</p>
+
+          <div class="theory-callout">
+            <b>🏛️ Estructura y Microestructura del Mercado:</b><br>
+            - <i>Mercados Primarios vs Secundarios:</i> Emisión inicial (IPOs) vs negociación secundaria continua.<br>
+            - <i>Mecánica del Libro de Órdenes (Order Book):</i> Oferta de venta (<i>Asks</i>) vs Demanda de compra (<i>Bids</i>).<br>
+            - <i>Bid-Ask Spread:</i> La diferencia \( \text{Spread} = P_{\text{ask}} - P_{\text{bid}} \), costo implícito de liquidez.<br>
+            - <i>Participantes Clave:</i> Creadores de Mercado (<i>Market Makers</i>), Inversionistas Institucionales y Traders Cuantitativos Algorítmicos.
+          </div>
+
+          <h3>Métrica del Precio Medio (Mid-Price) y Profundidad:</h3>
+          <p>El precio al que cotizan los activos se calcula como la media entre la mejor oferta de compra y venta:</p>
+          $$\text{Mid-Price} = \frac{P_{\text{bid}} + P_{\text{ask}}}{2}$$
         `,
-        code: `print("Mercados Financieros: Formación de Precios, Libros de Órdenes y Liquidez")`
+        code: `# clase_11_mercados.py - Código Completo de la Clase 11
+class OrderBookMarketSimulator:
+    def __init__(self, ticker):
+        self.ticker = ticker
+        self.bids = [(185.40, 500), (185.35, 1200), (185.30, 2500)] # (precio, volumen)
+        self.asks = [(185.50, 400), (185.55, 1500), (185.60, 3000)]
+
+    def get_market_depth(self):
+        best_bid = self.bids[0][0]
+        best_ask = self.asks[0][0]
+        spread = best_ask - best_bid
+        mid_price = (best_bid + best_ask) / 2.0
+        
+        print("=====================================================================")
+        print(f"  LIBRO DE ÓRDENES Y MICROESTRUCTURA DE MERCADO - {self.ticker}")
+        print("=====================================================================")
+        print(f"  Mejor Oferta Compra (Best Bid) : \\\${best_bid:.2f} (Vol: {self.bids[0][1]})")
+        print(f"  Mejor Oferta Venta  (Best Ask) : \\\${best_ask:.2f} (Vol: {self.asks[0][1]})")
+        print(f"  Spread de Liquidez             : \\\${spread:.2f} ({(spread/mid_price)*10000:.1f} bps)")
+        print(f"  Precio Medio (Mid-Price)       : \\\${mid_price:.2f}")
+        print("---------------------------------------------------------------------")
+        print("  LIBRO DE ÓRDENES NIVEL 2 (ASKS / BIDS):")
+        for p, v in reversed(self.asks):
+            print(f"    [ASK/VENTA]   \\\${p:.2f} | Vol: {v:,}")
+        print("    -----------------------------------------")
+        for p, v in self.bids:
+            print(f"    [BID/COMPRA]  \\\${p:.2f} | Vol: {v:,}")
+        print("=====================================================================")
+
+def ejecutar_clase_11():
+    sim = OrderBookMarketSimulator("AAPL")
+    sim.get_market_depth()
+
+if __name__ == "__main__":
+    ejecutar_clase_11()`
       },
       {
         id: 12,
