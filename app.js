@@ -5,52 +5,72 @@ const COURSE_DATA = [
   {
     id: 1,
     title: "Introducción y Flujo de Trabajo",
-    lessons: [
-      { 
+    lessons: [      { 
         id: 1, 
         title: "Estructura del Curso", 
         dur: "10:56", 
         theory: `
-          <h3>Transcripción Magistral y Desarrollo Teórico Completo (10:56 min)</h3>
-          <p>Bienvenidos a la clase inaugural del curso <b>Trading Cuantitativo en Python: Ingeniería Financiera e Inteligencia Artificial</b>. En este módulo inicial de 10 minutos y 56 segundos abordamos la hoja de ruta integral que te transformará en un <b>Desarrollador / Trader Quant Profesional</b>.</p>
-          
+          <h3>📖 Transcripción Magistral y Fundamentos Financieros (Trading para Principiantes)</h3>
+          <p>Bienvenidos a la lección inaugural del curso <b>Trading Cuantitativo en Python: Ingeniería Financiera e Inteligencia Artificial</b>. Esta lección de 10 minutos y 56 segundos establece la base pedagógica para cualquier estudiante, sin importar si no tienes conocimientos previos de finanzas o programación.</p>
+
           <div class="theory-callout">
-            <b>🎯 El Paradigma Cuantitativo vs. Trading Discrecional:</b><br>
-            El trading discrecional depende de la intuición humana y emociones. El <b>Trading Cuantitativo</b> aplica el método científico a los mercados financieros:<br>
-            <i>Hipótesis Estadística -> Extracción ETL -> Formulación Matemática -> Backtesting Realista -> Enrutamiento Broker API</i>.
+            <b>💡 ¿Qué es el Trading Cuantitativo explicado sin jerga?</b><br>
+            - <b>Trading Discrecional (Tradicional):</b> Comprar o vender activos financieros basándose en corazonadas, emociones, intuición o comentarios de noticias.<br>
+            - <b>Trading Cuantitativo (Quant):</b> Aplicar el método científico y la programación en Python para definir reglas matemáticas exactas de inversión. La computadora evalúa millones de datos del pasado para verificar si la estrategia es rentable antes de arriesgar un solo dólar.
           </div>
 
-          <h3>Los 6 Bloques Fundamentales del Programa:</h3>
+          <h3>🏛️ Glosario Elemental de Finanzas de la Clase 1:</h3>
           <ul>
-            <li><b>Bloque 1: POO y Cómputo Paralelo:</b> Clases abstractas base (<code>BaseStrategy</code>), multitarea en hilos y procesamiento multinúcleo con cerrojos de sincronización (<code>Lock</code>).</li>
-            <li><b>Bloque 2: Mercados Financieros y APIs de Brokers:</b> Acciones, Forex, Futuros, Opciones y CFDs vs DMA. Conexión con <b>Interactive Brokers (IBAPI), OANDA REST v20, FXCM y Binance API</b>.</li>
-            <li><b>Bloque 3: Indicadores Clave de Rendimiento (KPIs) e Indicadores Técnicos (+100):</b> Desarrollo en Python de <b>CAGR, Coeficiente de Sharpe, Coeficiente de Sortino, Maximum Drawdown (MDD %) y Calmar Ratio</b>.</li>
-            <li><b>Bloque 4: Backtesting Realista, Valoración Fundamental y Sentimiento NLP:</b> Motor de simulación vectorizado con comisiones (0.1%) y slippage (0.05%), Valor Intrínseco DCF, Fórmula Mágica de Joel Greenblatt y Clasificador VADER para noticias.</li>
-            <li><b>Bloque 5: Inteligencia Artificial, Machine Learning y Deep Learning:</b> Modelos No Supervisados de Márkov Ocultos (HMM) para regímenes de volatilidad, Random Forest / XGBoost y Redes Neuronales Multicapa (Deep Learning) en PyTorch.</li>
-            <li><b>Bloque 6: Sistema Unificado de Producción y Gestión de Riesgo:</b> Orquestación del pipeline completo en <code>main.py</code>, gestión de riesgos por Criterio de Kelly, VaR, cuentas de fondeo (Prop Trading), certificaciones (CFA, FRM, CQF, CMT) y fiscalidad (Formulario W-8BEN).</li>
+            <li><b>Mercado Financiero:</b> La red digital donde compradores y vendedores intercambian instrumentos financieros (acciones, divisas, criptomonedas).</li>
+            <li><b>Activo Financiero / Ticker:</b> La representación de una propiedad o contrato. Por ejemplo, <code>AAPL</code> es el código o <i>Ticker</i> bursátil de la empresa Apple Inc.</li>
+            <li><b>Broker (Corredor de Bolsa):</b> La institución financiera regulada que conecta tu programa en Python con la bolsa de valores para ejecutar tus órdenes.</li>
+            <li><b>Backtesting (Simulación Histórica):</b> El proceso de probar tu estrategia en datos históricos del pasado para medir su rendimiento, riesgo y pérdidas máximas antes de operar en tiempo real.</li>
           </ul>
+
+          <h3>🐍 Teoría y Sintaxis de Programación en Python desde Cero:</h3>
+          <p>Si nunca has escrito una línea de código en tu vida, no te preocupes. Python es el lenguaje más sencillo y parecido al lenguaje humano utilizado por los grandes bancos internacionales (JPMorgan, Goldman Sachs). En esta lección aprenderás los primeros componentes clave:</p>
+          
+          <div class="theory-callout">
+            <b>🔍 Desglose de Sintaxis Python para Principiantes:</b><br>
+            - <code>import sys, os</code>: La palabra clave <b>import</b> sirve para traer "cajas de herramientas" prefabricadas llamadas <i>Módulos</i>. <code>sys</code> nos da información sobre la computadora y <code>os</code> nos permite manejar archivos y carpetas.<br>
+            - <code>def ejecutar_clase_01():</code>: La palabra <b>def</b> (definir) crea una <b>Función</b>, que es una receta o grupo de instrucciones reutilizable. Los paréntesis <code>()</code> reciben datos y los dos puntos <code>:</code> le indican a Python que lo que está indented (con sangría a la derecha) pertenece a esa función.<br>
+            - <code>print("Texto")</code>: La función <b>print()</b> toma un texto o variable entre paréntesis y lo imprime en la pantalla de la terminal.<br>
+            - <code>f"Versión: {variable}"</code>: Una <i>f-string</i> (cadena de texto formateada) nos permite incrustar variables vivas dentro de un texto usando llaves <code>{}</code>.<br>
+            - <code>if __name__ == "__main__":</code>: Es una protección estándar de Python que le dice al programa: <i>"Solo ejecuta este código si la persona hizo doble clic directamente sobre este archivo"</i>.
+          </div>
         `,
-        code: `# clase_01_estructura.py - Código Completo de la Clase 1
+        code: `# clase_01_estructura.py - Código Completo y Comentado para Principiantes
 import sys
 import os
 import quant_trading
 
 def ejecutar_clase_01():
+    # 1. Mensaje de Bienvenida e Introducción al Sistema Quant
     print("=====================================================================")
     print("  CLASE 1: VERIFICACIÓN DEL SISTEMA DE TRADING CUANTITATIVO E IA    ")
     print("=====================================================================")
-    print(f" Versión de la Librería Quant: {quant_trading.__version__}")
-    print(f" Intérprete Python: {sys.version.split()[0]} ({sys.platform})")
-    print(" Módulos Core Instanciados:")
-    print("   - Core: BaseStrategy, ParallelExecutor, TaskSynchronizer")
-    print("   - Data: YahooDataFetcher, BinanceDataFetcher")
-    print("   - Backtesting: PerformanceMetrics, BacktestEngine")
-    print("   - Indicators: TechnicalIndicators (+100 Indicadores)")
-    print("   - Analysis: FundamentalAnalysis (DCF), SentimentAnalyzer (VADER)")
-    print("   - Models: MarketRegimeHMM, SupervisedTrendPredictor, NeuralNetworkPredictor")
-    print("   - Execution: MockBrokerAPI, QuantTradingEngine")
+    
+    # 2. Consultar la versión instalada de la librería personalizada del curso
+    version_quant = quant_trading.__version__
+    print(f" Versión de la Librería Quant  : {version_quant}")
+    
+    # 3. Consultar la versión del intérprete de Python en tu computadora
+    version_python = sys.version.split()[0]
+    plataforma_os = sys.platform
+    print(f" Intérprete Python Detectado    : v{version_python} en sistema ({plataforma_os})")
+    
+    # 4. Imprimir la lista de submódulos que aprenderemos durante el curso
+    print("\n Módulos de Aprendizaje Disponibles:")
+    print("   - Core        : POO, Multiprocessing, Hilos y Cerrojos Locks")
+    print("   - Data        : Conectores ETL (Yahoo Finance, Binance API)")
+    print("   - Backtesting : Motor de Simulación Histórica & Métricas KPIs")
+    print("   - Indicators  : Biblioteca de +100 Indicadores Técnicos")
+    print("   - Analysis    : Valoración DCF Fundamental & Sentimiento NLP VADER")
+    print("   - Models      : Modelos IA (HMM, Random Forest, PyTorch MLP)")
+    print("   - Execution   : Conexión con Broker APIs (Interactive Brokers, OANDA)")
     print("=====================================================================")
 
+# Punto de entrada principal para ejecutar la función
 if __name__ == "__main__":
     ejecutar_clase_01()`
       },
