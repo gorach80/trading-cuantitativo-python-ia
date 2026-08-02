@@ -150,17 +150,40 @@ if __name__ == "__main__":
         title: "Conoce a tu Instructor y Bienvenida",
         dur: "01:43",
         theory: `
-          <h3>Transcripción Magistral y Desarrollo Teórico Completo (01:43 min)</h3>
-          <p>Presentación oficial del instructor, <b>Axel Francisco Munguía Quintero</b>, compartiendo la visión pedagógica del curso.</p>
+          <h3>📖 Transcripción Magistral y Fundamentos Financieros (Trading para Principiantes)</h3>
+          <p>Presentación oficial del instructor <b>Axel Francisco Munguía Quintero</b> y bienvenida al marco pedagógico de <b>Aprender Construyendo (Build to Learn)</b> en Ingeniería Financiera.</p>
+
           <div class="theory-callout">
-            <b>Perfil del Instructor:</b> Ingeniero Financiero, Máster en IA Aplicada, Quant Developer activo, instructor en Udemy con 4.7★ (7,067 estudiantes) y más de 30 certificaciones internacionales en Ciberseguridad y Finanzas.
+            <b>💡 ¿Por qué aprender Finanzas programando es más eficiente?</b><br>
+            En las finanzas tradicionales se enseñan teorías sin comprobación empírica. En el <b>Trading Cuantitativo</b>, cada fórmula o estrategia (como medias móviles o modelos de Inteligencia Artificial) se traduce inmediatamente a código Python. Si el algoritmo funciona en datos reales pasados, el aprendizaje queda validado empíricamente.
           </div>
-          <h3>Filosofía de Enseñar Construyendo (Build to Learn):</h3>
-          <p>Cada concepto cuantitativo o modelo de Inteligencia Artificial se traducirá directamente a código Python modular dentro de la librería <code>quant_trading/</code>.</p>
+
+          <h3>👨‍🏫 Perfil Profesional del Instructor:</h3>
+          <ul>
+            <li><b>Formación Académica:</b> Ingeniero Financiero con Máster en Inteligencia Artificial Aplicada.</li>
+            <li><b>Experiencia Cuantitativa:</b> Desarrollador / Trader Quant activo en mercados de Renta Variable, Forex y Derivados.</li>
+            <li><b>Métricas en Udemy:</b> Calificación promedio de 4.7★ (847 reseñas), más de 7,000 estudiantes y más de 30 certificaciones internacionales en Ciberseguridad y Finanzas.</li>
+          </ul>
+
+          <h3>🐍 Teoría y Sintaxis de Programación en Python desde Cero:</h3>
+          <p>En esta lección nos introducimos al concepto más poderoso de la programación moderna: la <b>Programación Orientada a Objetos (POO)</b>.</p>
+
+          <div class="theory-callout">
+            <b>🔍 Desglose de Sintaxis POO para Principiantes:</b><br>
+            - <code>class InstructorProfile:</code>: La palabra clave <b>class</b> (Clase) crea una plantilla o "molde" para construir objetos. Imagina que es el plano arquitectónico de una casa.<br>
+            - <code>def __init__(self, name, title):</code>: Es el <b>Método Constructor</b>. Es una función especial que se ejecuta automáticamente cuando se crea un objeto para inicializar sus datos (atributos).<br>
+            - <code>self</code>: Representa al objeto específico que se está creando en ese momento. Al escribir <code>self.name = name</code>, le decimos a Python: <i>"Guarda este nombre dentro de la memoria de este objeto"</i>.<br>
+            - <code>{self.students_count:,}</code>: El modificador <code>:,</code> dentro de una f-string le indica a Python que agregue comas de separación de miles a números grandes (transformando <code>7067</code> en <code>7,067</code>).
+          </div>
         `,
-        code: `# clase_03_instructor.py - Código Completo de la Clase 3
+        code: `# clase_03_instructor.py - Código Completo y Comentado para Principiantes
 class InstructorProfile:
+    """
+    Clase que representa el perfil profesional del instructor del curso.
+    Demuestra la creación de Clases, Métodos y Atributos en Python.
+    """
     def __init__(self, name, title, master_degree, certifications_count, rating, students_count):
+        # Atributos de instancia guardados usando 'self'
         self.name = name
         self.title = title
         self.master_degree = master_degree
@@ -169,7 +192,8 @@ class InstructorProfile:
         self.students_count = students_count
 
     def get_welcome_summary(self):
-        return (
+        # Método de instancia que genera un reporte formateado de bienvenida
+        resumen = (
             f"=====================================================================\n"
             f"  BIENVENIDO AL CURSO DE TRADING CUANTITATIVO EN PYTHON E IA         \n"
             f"=====================================================================\n"
@@ -180,16 +204,22 @@ class InstructorProfile:
             f" Métricas de Plataforma  : {self.rating}★ Rating | {self.students_count:,} Estudiantes\n"
             f"====================================================================="
         )
+        return resumen
 
 def ejecutar_clase_03():
+    # Instanciación de la Clase (creación del objeto 'inst')
     inst = InstructorProfile(
-        "Axel Francisco Munguía Quintero",
-        "Ingeniero Financiero & Quant Developer",
-        "Máster en Inteligencia Artificial Aplicada",
-        30, 4.7, 7067
+        name="Axel Francisco Munguía Quintero",
+        title="Ingeniero Financiero & Quant Developer",
+        master_degree="Máster en Inteligencia Artificial Aplicada",
+        certifications_count=30,
+        rating=4.7,
+        students_count=7067
     )
+    # Imprimir el resultado devuelto por el método del objeto
     print(inst.get_welcome_summary())
 
+# Punto de ejecución principal
 if __name__ == "__main__":
     ejecutar_clase_03()`
       },
