@@ -575,11 +575,65 @@ if __name__ == "__main__":
         dur: "05:12",
         theory: `
           <h3>Transcripción Magistral y Desarrollo Teórico Completo (05:12 min)</h3>
-          <p>Análisis operativo de Acciones, Forex, Futuros estandarizados, Opciones (Calls/Puts) y CFDs vs DMA.</p>
+          <p>En esta lección de 5 minutos y 12 segundos analizamos en profundidad los 5 <b>Instrumentos Financieros Operativos</b> que abordaremos en las estrategias algorítmicas del curso.</p>
+
+          <div class="theory-callout">
+            <b>💼 Taxonomía de Activos Financieros:</b><br>
+            1. <b>Acciones (Equities):</b> Títulos de propiedad de capital social (ej. AAPL, MSFT). Rentabilidad por dividendos y apreciación de precio.<br>
+            2. <b>Mercado de Divisas (Forex):</b> Pares de monedas liquidadas en paridad (ej. EUR/USD). Cotización en pips (0.0001).<br>
+            3. <b>Contratos de Futuros:</b> Derivados estandarizados con vencimiento fijo (ej. E-mini S&P 500 ES, Crudo CL). Margen inicial y liquidación diaria (<i>Mark-to-Market</i>).<br>
+            4. <b>Opciones Financieras:</b> Contratos de derechos asimétricos (Calls y Puts).<br>
+            5. <b>Contratos por Diferencia (CFDs) vs DMA:</b> Derivados OTC vs Acceso Directo a Mercado.
+          </div>
+
+          <h3>Métricas y Fórmulas de Payoff en Derivados:</h3>
+          <div class="formula-card">
+            <span class="formula-title">📐 Payoff de una Opción Call (Compra):</span>
+            <span class="formula-expr">Payoff<sub>Call</sub> = max(S<sub>T</sub> - K, 0) - Prima</span>
+          </div>
+
+          <div class="formula-card">
+            <span class="formula-title">📐 Valor de un Pip en Forex (Lote Estándar 100,000 unidades):</span>
+            <span class="formula-expr">Valor Pip = 100,000 × 0.0001 = $10.00 USD</span>
+          </div>
         `,
-        code: `instruments = ["Acciones", "Forex (EUR/USD)", "Futuros (ES/NQ)", "Opciones (Calls/Puts)", "CFDs"]
-for inst in instruments:
-    print(f"Instrumento Disponible: {inst}")`
+        code: `# clase_12_instrumentos.py - Código Completo de la Clase 12
+class FinancialInstrumentEvaluator:
+    def __init__(self):
+        self.instruments = {}
+
+    def add_asset(self, name, asset_type, price):
+        self.instruments[name] = {"type": asset_type, "price": price}
+
+    def calculate_call_payoff(self, strike, spot_price, premium):
+        payoff = max(spot_price - strike, 0) - premium
+        return round(payoff, 2)
+
+    def calculate_futures_margin(self, contract_value, margin_pct=0.10):
+        return round(contract_value * margin_pct, 2)
+
+    def display_report(self):
+        print("=====================================================================")
+        print("  EVALUACIÓN CUANTITATIVA DE INSTRUMENTOS FINANCIEROS Y DERIVADOS    ")
+        print("=====================================================================")
+        for name, data in self.instruments.items():
+            print("  Activo: " + name.ljust(10) + " | Tipo: " + data["type"].ljust(12) + " | Cotización: $" + str(data["price"]))
+        print("---------------------------------------------------------------------")
+        call_payoff = self.calculate_call_payoff(strike=180.0, spot_price=188.5, premium=3.2)
+        fut_margin = self.calculate_futures_margin(contract_value=5000.0 * 50, margin_pct=0.08)
+        print("  [OPCIONES CALL]  Payoff a Vencimiento (K=180, S=188.5, Prima=3.2): $" + str(call_payoff) + " USD")
+        print("  [FUTUROS ES]     Margen Requerido Garantía (8% de $250k): $" + str(fut_margin) + " USD")
+        print("=====================================================================")
+
+def ejecutar_clase_12():
+    evaluator = FinancialInstrumentEvaluator()
+    evaluator.add_asset("AAPL", "Stock Equity", 188.50)
+    evaluator.add_asset("EUR/USD", "Forex Pair", 1.0850)
+    evaluator.add_asset("ES_FUT", "Futures ES", 5120.00)
+    evaluator.display_report()
+
+if __name__ == "__main__":
+    ejecutar_clase_12()`
       },
       {
         id: 13,
