@@ -472,7 +472,7 @@ if __name__ == "__main__":
           <div class="theory-callout">
             <b>🛡️ Las 4 Reglas de Oro del Desarrollador Quant:</b><br>
             1. <i>Prevención del Sobreajuste (Overfitting):</i> Nunca optimizar parámetros hasta amoldar el modelo al ruido pasado.<br>
-            2. <i>Eliminación del Sesgo de Mirada al Futuro (Lookahead Bias):</i> Utilizar únicamente información disponible en el instante \(t\) de la decisión.<br>
+            2. <i>Eliminación del Sesgo de Mirada al Futuro (Lookahead Bias):</i> Utilizar únicamente información disponible en el instante <i>t</i> de la decisión.<br>
             3. <i>Incorporación Rígida de Ficción Operativa:</i> Incluir siempre costos de transacción (comisión + slippage) en el backtesting.<br>
             4. <i>Modularidad POO:</i> Mantener lógica de señal, gestión de riesgo y broker API desacopladas.
           </div>
@@ -522,9 +522,16 @@ if __name__ == "__main__":
             - <i>Participantes Clave:</i> Creadores de Mercado (<i>Market Makers</i>), Inversionistas Institucionales y Traders Cuantitativos Algorítmicos.
           </div>
 
-          <h3>Métrica del Precio Medio (Mid-Price) y Profundidad:</h3>
-          <p>El precio al que cotizan los activos se calcula como la media entre la mejor oferta de compra y venta:</p>
-          $$\text{Mid-Price} = \frac{P_{\text{bid}} + P_{\text{ask}}}{2}$$
+          <h3>Métrica del Precio Medio (Mid-Price) y Spread:</h3>
+          <div class="formula-card">
+            <span class="formula-title">📐 Fórmula del Spread de Liquidez (Bid-Ask Spread):</span>
+            <span class="formula-expr">Spread = P<sub>ask</sub> - P<sub>bid</sub></span>
+          </div>
+
+          <div class="formula-card">
+            <span class="formula-title">📐 Fórmula del Precio Medio (Mid-Price):</span>
+            <span class="formula-expr">Mid-Price = (P<sub>bid</sub> + P<sub>ask</sub>) / 2</span>
+          </div>
         `,
         code: `# clase_11_mercados.py - Código Completo de la Clase 11
 class OrderBookMarketSimulator:

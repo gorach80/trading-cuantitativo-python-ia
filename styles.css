@@ -770,6 +770,30 @@ body {
   border-color: var(--accent-primary);
 }
 
-.nav-btn.primary:hover {
-  background: #4f46e5;
+/* Formula Card Design System for Clean Mathematical Notation */
+.formula-card {
+  background: rgba(6, 182, 212, 0.08);
+  border: 1px solid rgba(6, 182, 212, 0.25);
+  border-radius: 8px;
+  padding: 0.85rem 1.25rem;
+  margin: 1.25rem 0;
+  font-family: var(--font-mono);
+  color: var(--accent-cyan);
+  font-size: 0.95rem;
 }
+
+.formula-card .formula-title {
+  font-weight: 700;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.formula-card .formula-expr {
+  color: #38bdf8;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
