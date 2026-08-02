@@ -1491,6 +1491,67 @@ function loadLesson(secIdx, lesIdx) {
   
   if (codeEditor) codeEditor.value = codeSnippet;
   if (terminalOutput) terminalOutput.textContent = `// Listo para ejecutar ${lesson.title} en Python 3.10...\nPresiona 'Ejecutar Código Python' para compilar el algoritmo.`;
+
+  // Render Class Specific Resources (Sección 1 de Tab 4)
+  const resourcesContainer = document.getElementById('class-resources-list');
+  if (resourcesContainer) {
+    const classNumStr = lesson.id < 10 ? `0${lesson.id}` : `${lesson.id}`;
+    resourcesContainer.innerHTML = `
+      <a href="docs/contenido_teorico_completo.md" target="_blank" class="resource-item-link">
+        <div class="resource-item-info">
+          <span class="resource-item-name">📄 Manual Teórico PDF/MD - Clase ${lesson.id}</span>
+          <span class="resource-item-desc">Transcripción detallada de ${lesson.title} (${lesson.dur} min)</span>
+        </div>
+        <span class="resource-badge-dl">MD / PDF</span>
+      </a>
+
+      <a href="#" onclick="alert('Repetición HD de la Clase ${lesson.id} disponible en la plataforma.'); return false;" class="resource-item-link">
+        <div class="resource-item-info">
+          <span class="resource-item-name">🎥 Video Explicativo HD 1080p - Clase ${lesson.id}</span>
+          <span class="resource-item-desc">Explicación magistral audiovisual de ${lesson.title} (${lesson.dur} min)</span>
+        </div>
+        <span class="resource-badge-dl">MP4 / HD</span>
+      </a>
+
+      <a href="#" onclick="alert('Script ejecutable listo: clase_${classNumStr}_script.py'); return false;" class="resource-item-link">
+        <div class="resource-item-info">
+          <span class="resource-item-name">🐍 Código Fuente Python Utilizable</span>
+          <span class="resource-item-desc">Script ejecutable independiente: <code>clase_${classNumStr}_script.py</code></span>
+        </div>
+        <span class="resource-badge-dl">.PY SCRIPT</span>
+      </a>
+    `;
+  }
+
+  // Render Certifications & Accreditations (Sección 2 de Tab 4)
+  const certsContainer = document.getElementById('class-certifications-list');
+  if (certsContainer) {
+    certsContainer.innerHTML = `
+      <a href="docs/certificaciones_y_carrera.md" target="_blank" class="resource-item-link">
+        <div class="resource-item-info">
+          <span class="resource-item-name">🏆 Acreditaciones CFA / FRM / CQF / CMT</span>
+          <span class="resource-item-desc">Requisitos para certificación cuantitativa e ingeniería financiera</span>
+        </div>
+        <span class="resource-badge-dl">GUÍA PDF</span>
+      </a>
+
+      <a href="docs/plataformas_escaneres_y_fiscalidad.md" target="_blank" class="resource-item-link">
+        <div class="resource-item-info">
+          <span class="resource-item-name">🏛️ Formulario W-8BEN & Fiscalidad de Inversiones</span>
+          <span class="resource-item-desc">Tratados de doble imposición y regulación de brokers internacionales</span>
+        </div>
+        <span class="resource-badge-dl">FISCAL W-8</span>
+      </a>
+
+      <a href="#" onclick="alert('Certificado de Finalización de la Sección ${section.id}: ${section.title}. Completa el 100% de las clases para desbloquear tu insignia.'); return false;" class="resource-item-link">
+        <div class="resource-item-info">
+          <span class="resource-item-name">🎓 Certificado de Módulo: Sección ${section.id}</span>
+          <span class="resource-item-desc">Acreditación de superación de la Sección ${section.id}: ${section.title}</span>
+        </div>
+        <span class="resource-badge-dl">DIPLOMA</span>
+      </a>
+    `;
+  }
 }
 
 // Tab Switching

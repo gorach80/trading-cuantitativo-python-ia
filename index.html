@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trading Cuantitativo en Python, Ingeniería Financiera e IA - Plataforma de Aprendizaje</title>
-  <link rel="stylesheet" href="styles.css?v=20260802_v11">
+  <link rel="stylesheet" href="styles.css?v=20260802_v12">
   <!-- Chart.js for interactive financial graphs -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -221,17 +221,23 @@
           </div>
         </div>
 
-        <!-- Tab 4: Resources & Certifications -->
+        <!-- Tab 4: Recursos & Certificaciones Dividido -->
         <div class="tab-pane" id="tab-resources">
-          <div class="theory-card">
-            <h3 class="theory-title">Recursos de la Lección & Guías de Carrera</h3>
-            <div class="theory-body">
-              <p>Descarga el código fuente de esta lección o consulta las guías adicionales del instructor:</p>
-              <ul>
-                <li>📄 <a href="docs/certificaciones_y_carrera.md" target="_blank" style="color: var(--accent-cyan);">Guía Oficial de Certificaciones Financieras (CFA, FRM, CQF, CMT)</a></li>
-                <li>🏛️ <a href="docs/plataformas_escaneres_y_fiscalidad.md" target="_blank" style="color: var(--accent-cyan);">Guía de Plataformas, Escáneres de Acciones y Fiscalidad W-8BEN</a></li>
-                <li>📦 Repositorio Python completo: <code>quant_trading/</code></li>
-              </ul>
+          <div class="resources-split-grid">
+            <!-- Sección 1: Recursos Específicos de la Clase -->
+            <div class="resource-card">
+              <h3 class="resource-section-title">📦 Recursos Específicos de esta Clase</h3>
+              <div id="class-resources-list" class="resources-list-box">
+                <!-- Se llena dinámicamente con app.js -->
+              </div>
+            </div>
+
+            <!-- Sección 2: Certificaciones Financieras & Acreditaciones -->
+            <div class="resource-card">
+              <h3 class="resource-section-title">🎓 Certificaciones Financieras & Acreditaciones</h3>
+              <div id="class-certifications-list" class="resources-list-box">
+                <!-- Se llena dinámicamente con app.js -->
+              </div>
             </div>
           </div>
         </div>
@@ -257,6 +263,6 @@
 
   </div>
 
-  <script src="app.js?v=20260802_v11"></script>
+  <script src="app.js?v=20260802_v12"></script>
 </body>
 </html>
