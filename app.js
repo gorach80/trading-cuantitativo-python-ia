@@ -79,41 +79,69 @@ if __name__ == "__main__":
         title: "Requisitos Elementales", 
         dur: "01:39", 
         theory: `
-          <h3>Transcripción Magistral y Desarrollo Teórico Completo (01:39 min)</h3>
-          <p>En esta lección de 1 minuto y 39 segundos revisamos las herramientas y componentes técnicos elementales necesarios.</p>
+          <h3>📖 Transcripción Magistral y Fundamentos Financieros (Trading para Principiantes)</h3>
+          <p>En esta lección de 1 minuto y 39 segundos revisamos las herramientas técnicas y requisitos mínimos indispensables para construir tu propia mesa de operaciones cuantitativas en Python.</p>
+
           <div class="theory-callout">
-            <b>No se requiere experiencia previa en Python:</b> El curso cuenta con un Apéndice Intensivo de Python desde Cero (Sección 29) que cubre variables, listas, diccionarios, bucles y DataFrames de Pandas.
+            <b>💡 ¿Se requiere experiencia previa en Finanzas o Trading?</b><br>
+            <b>No.</b> El curso está diseñado desde cero. Cada concepto financiero (como órdenes de compra, ticks de volumen, volatilidad o apalancamiento) se introduce paso a paso antes de escribir el código correspondiente.
           </div>
-          <h3>Lista de Requisitos Técnicos:</h3>
+
+          <h3>🏛️ Componentes del Entorno de Operaciones Cuantitativas:</h3>
           <ul>
-            <li><b>Computadora Personal:</b> Windows 10/11, macOS o Linux con al menos 8 GB de RAM.</li>
-            <li><b>Distribución Anaconda:</b> Entorno científico con Python 3.10+ (Pandas, NumPy, Scipy, Scikit-Learn).</li>
-            <li><b>Editor de Código:</b> Visual Studio Code o PyCharm.</li>
-            <li><b>Conexión a Internet:</b> Para extracción de datos en tiempo real y comunicación con broker APIs.</li>
+            <li><b>Datos de Mercado (Market Data):</b> La materia prima del desarrollador quant. Consiste en series temporales históricas de precios (<i>Apertura, Máximo, Mínimo, Cierre y Volumen - OHLCV</i>).</li>
+            <li><b>Terminal de Ejecución (Broker Gateway):</b> El software que conecta tu computadora con la bolsa de valores para transmitir órdenes en milisegundos.</li>
+            <li><b>Estabilidad del Entorno Científico:</b> La garantía de que todas las librerías matemáticas y de Inteligencia Artificial estén instaladas en versiones compatibles sin conflictos.</li>
           </ul>
+
+          <h3>🐍 Teoría y Sintaxis de Programación en Python desde Cero:</h3>
+          <p>En esta clase aprenderás tres estructuras esenciales de Python utilizadas en todos los algoritmos de trading del mundo:</p>
+
+          <div class="theory-callout">
+            <b>🔍 Desglose de Sintaxis Python para Principiantes:</b><br>
+            - <code>librerias = ['pandas', 'numpy', 'scipy']</code>: Una <b>Lista</b> es una colección ordenada de elementos encerrados entre corchetes <code>[]</code>. Permite almacenar múltiples nombres o precios en una sola variable.<br>
+            - <code>for lib in librerias:</code>: Un <b>Bucle FOR</b> es una instrucción que repite una acción recorriendo cada elemento de la lista uno por uno.<br>
+            - <code>try / except</code>: La estructura de <b>Control de Excepciones</b>. El bloque <code>try:</code> intenta ejecutar una instrucción propensa a error (como cargar una librería que podría no estar instalada). Si falla, el programa no colapsa, sino que salta al bloque <code>except:</code> para mostrar un mensaje amigable.<br>
+            - <code>platform.system()</code>: Función del módulo nativo <code>platform</code> que devuelve el nombre de tu sistema operativo (<i>Windows, macOS o Linux</i>).
+          </div>
         `,
-        code: `# clase_02_requisitos.py - Código Completo de la Clase 2
+        code: `# clase_02_requisitos.py - Código Completo y Comentado para Principiantes
 import sys
 import platform
 
 def verificar_requisitos_entorno():
+    # 1. Encabezado de Diagnóstico
     print("=====================================================================")
     print("  CLASE 2: VERIFICACIÓN DE REQUISITOS TÉCNICOS Y DEPENDENCIAS       ")
     print("=====================================================================")
-    print(f" Sistema Operativo: {platform.system()} {platform.release()} ({platform.machine()})")
-    print(f" Versión de Python: {sys.version.split()[0]}")
     
+    # 2. Obtener información del Sistema Operativo y Versión de Python
+    sistema_operativo = f"{platform.system()} {platform.release()} ({platform.machine()})"
+    version_py = sys.version.split()[0]
+    
+    print(f" Sistema Operativo Detectado : {sistema_operativo}")
+    print(f" Versión de Python Activa    : v{version_py}")
+    
+    # 3. Lista de paquetes esenciales para Trading Cuantitativo e IA
     librerias_clave = ['pandas', 'numpy', 'scipy', 'sklearn', 'yfinance']
-    print("\n Estado de Paquetes Cuantitativos Instalados:")
+    
+    print("\n Estado de Paquetes Cuantitativos e IA Instalados:")
+    print(" -------------------------------------------------------------------")
+    
+    # 4. Bucle FOR con control de excepciones TRY / EXCEPT
     for lib in librerias_clave:
         try:
+            # Intenta importar el módulo dinámicamente
             mod = __import__(lib)
-            ver = getattr(mod, '__version__', 'Instalado')
-            print(f"   [✓] {lib.ljust(12)} : v{ver}")
-        except Exception:
-            print(f"   [✗] {lib.ljust(12)} : No detectado")
+            version_lib = getattr(mod, '__version__', 'Instalado OK')
+            print(f"   [✓ INSTALADO] {lib.ljust(15)} : v{version_lib}")
+        except ImportError:
+            # Si el paquete no existe en el sistema, captura el error
+            print(f"   [✗ NO DETECTADO] {lib.ljust(15)} : Ejecutar 'pip install {lib}'")
+            
     print("=====================================================================")
 
+# Ejecución autónoma de la función
 if __name__ == "__main__":
     verificar_requisitos_entorno()`
       },
