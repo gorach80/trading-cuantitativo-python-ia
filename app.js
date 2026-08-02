@@ -836,12 +836,72 @@ if __name__ == "__main__":
         dur: "03:05",
         theory: `
           <h3>Transcripción Magistral y Desarrollo Teórico Completo (03:05 min)</h3>
-          <p>Formalización matemática de precios y retornos logarítmicos continuos r_t = ln(P_t) - ln(P_{t-1}).</p>
+          <p>En esta lección final de la <b>Sección 2</b> de 3 minutos y 5 segundos formalizamos la modelación matemática de series temporales de precios mediante <b>Retornos Logarítmicos Continuos</b> y <b>Volatilidad Anualizada</b>.</p>
+
+          <div class="theory-callout">
+            <b>📈 Fundamentos de Modelación de Precios:</b><br>
+            1. <b>Aditividad Temporal:</b> Los retornos logarítmicos permiten sumar períodos \( r_{t_0 \to t_2} = r_{t_1} + r_{t_2} \), facilitando el cálculo estadístico.<br>
+            2. <b>Distribución Log-Normal:</b> Mientras que los precios no pueden ser negativos, sus retornos logarítmicos se aproximan a una distribución normal Gaussiana.<br>
+            3. <b>Anualización de la Volatilidad:</b> Para comparar activos en distintas escalas de tiempo, la desviación estándar diaria se escala multiplicando por el factor \(\\sqrt{252}\) (días hábiles bursátiles por año).
+          </div>
+
+          <h3>Fórmulas Matemáticas de Retornos y Volatilidad:</h3>
+          <div class="formula-card">
+            <span class="formula-title">📐 Retorno Logarítmico Continuo:</span>
+            <span class="formula-expr">r<sub>t</sub> = ln(P<sub>t</sub>) - ln(P<sub>t-1</sub>) = ln(P<sub>t</sub> / P<sub>t-1</sub>)</span>
+          </div>
+
+          <div class="formula-card">
+            <span class="formula-title">📐 Volatilidad Anualizada de Mercado:</span>
+            <span class="formula-expr">σ<sub>anual</sub> = σ<sub>diaria</sub> × √252</span>
+          </div>
         `,
-        code: `import numpy as np
-prices = np.array([100.0, 102.5, 101.0, 104.5, 106.0])
-log_returns = np.diff(np.log(prices))
-print(f"Retornos Logarítmicos: {np.round(log_returns, 4)}")`
+        code: `# clase_16_modelos_matematicos.py - Código Completo de la Clase 16
+import numpy as np
+
+class MathematicalReturnsEngine:
+    def __init__(self, prices):
+        self.prices = np.array(prices)
+
+    def calculate_log_returns(self):
+        return np.diff(np.log(self.prices))
+
+    def calculate_annualized_metrics(self):
+        log_rets = self.calculate_log_returns()
+        mean_daily = np.mean(log_rets)
+        std_daily = np.std(log_rets, ddof=1)
+        
+        annualized_return = mean_daily * 252.0
+        annualized_volatility = std_daily * np.sqrt(252.0)
+        
+        return {
+            "mean_daily": round(mean_daily, 5),
+            "std_daily": round(std_daily, 5),
+            "ann_return_pct": round(annualized_return * 100, 2),
+            "ann_volatility_pct": round(annualized_volatility * 100, 2)
+        }
+
+    def display_report(self):
+        metrics = self.calculate_annualized_metrics()
+        print("=====================================================================")
+        print("  ANÁLISIS MATEMÁTICO DE RETORNOS Y VOLATILIDAD DE MERCADO          ")
+        print("=====================================================================")
+        print("  Serie de Precios Entrada   : " + str(list(self.prices)))
+        print("  Retornos Logarítmicos r_t  : " + str(np.round(self.calculate_log_returns(), 4)))
+        print("---------------------------------------------------------------------")
+        print("  Media Retorno Diario μ     : " + str(metrics["mean_daily"]))
+        print("  Desviación Estándar σ      : " + str(metrics["std_daily"]))
+        print("  Retorno Anualizado Estimado: " + str(metrics["ann_return_pct"]) + "%")
+        print("  VOLATILIDAD ANUALIZADA σ_a : " + str(metrics["ann_volatility_pct"]) + "%")
+        print("=====================================================================")
+
+def ejecutar_clase_16():
+    sample_prices = [100.0, 102.5, 101.2, 104.8, 106.3, 105.5, 108.9]
+    engine = MathematicalReturnsEngine(sample_prices)
+    engine.display_report()
+
+if __name__ == "__main__":
+    ejecutar_clase_16()`
       }
     ]
   },
