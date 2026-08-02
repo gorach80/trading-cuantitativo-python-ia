@@ -641,9 +641,66 @@ if __name__ == "__main__":
         dur: "05:16",
         theory: `
           <h3>Transcripción Magistral y Desarrollo Teórico Completo (05:16 min)</h3>
-          <p>Diferencias entre Análisis Fundamental, Técnico y Cuantitativo. El enfoque quant expresa reglas en modelos matemáticos comprobables.</p>
+          <p>En esta lección de 5 minutos y 16 segundos comparamos los tres grandes paradigmas del análisis de inversiones: <b>Análisis Fundamental</b>, <b>Análisis Técnico</b> y <b>Análisis Cuantitativo impulsado por IA</b>.</p>
+
+          <div class="theory-callout">
+            <b>📊 Comparativa de Paradigmas de Inversión:</b><br>
+            1. <b>Análisis Fundamental:</b> Evalúa la salud financiera subyacente (<i>Free Cash Flow DCF, PER, EV/EBITDA</i>). Objetivo: Encontrar valor intrínseco.<br>
+            2. <b>Análisis Técnico:</b> Examina la acción del precio histórica, volumen e indicadores derivados (<i>RSI, MACD, Medias Móviles</i>). Objetivo: Identificar la inercia del mercado.<br>
+            3. <b>Análisis Cuantitativo & IA:</b> Formaliza hipótesis mediante modelos matemáticos vectorizados que combinan datos fundamentales, técnicos y alternativos (NLP Sentiment VADER, Regímenes HMM y Redes Neuronales).
+          </div>
+
+          <h3>Fórmula del Score Alfa Cuantitativo Híbrido:</h3>
+          <div class="formula-card">
+            <span class="formula-title">📐 Score Cuantitativo Ponderado (Puntaje Alfa):</span>
+            <span class="formula-expr">Score<sub>Quant</sub> = 0.40 × Fund<sub>Score</sub> + 0.30 × Tech<sub>Score</sub> + 0.30 × ML<sub>Prob</sub></span>
+          </div>
         `,
-        code: `print("Análisis Cuantitativo = Unificación de Análisis Fundamental, Técnico e IA en Código")`
+        code: `# clase_13_tipos_analisis.py - Código Completo de la Clase 13
+class QuantitativeAnalysisEngine:
+    def __init__(self, ticker):
+        self.ticker = ticker
+
+    def calculate_fundamental_score(self, pe_ratio, free_cash_flow_growth):
+        score = 0.0
+        if pe_ratio < 20.0: score += 50.0
+        if free_cash_flow_growth > 0.08: score += 50.0
+        return score
+
+    def calculate_technical_score(self, rsi, price_above_sma200):
+        score = 0.0
+        if 40.0 <= rsi <= 65.0: score += 50.0
+        if price_above_sma200: score += 50.0
+        return score
+
+    def evaluate_hybrid_quant_alpha(self, fundamental, technical, ml_prob):
+        fund_score = self.calculate_fundamental_score(fundamental["pe"], fundamental["fcf_growth"])
+        tech_score = self.calculate_technical_score(technical["rsi"], technical["sma_trend"])
+        ml_score = ml_prob * 100.0
+        
+        quant_score = (0.40 * fund_score) + (0.30 * tech_score) + (0.30 * ml_score)
+        
+        print("=====================================================================")
+        print("  MOTOR DE ANÁLISIS CUANTITATIVO HÍBRIDO (ALFA SCORE) - " + self.ticker)
+        print("=====================================================================")
+        print("  Puntaje Fundamental (DCF / PER)    : " + str(fund_score) + " / 100")
+        print("  Puntaje Técnico (RSI / SMA 200)    : " + str(tech_score) + " / 100")
+        print("  Probabilidad ML (Random Forest)   : " + str(round(ml_score, 1)) + "%")
+        print("---------------------------------------------------------------------")
+        print("  ALFA SCORE CUANTITATIVO UNIFICADO   : " + str(round(quant_score, 1)) + " / 100")
+        decision = "BUY (COMPRA ALCISTA)" if quant_score >= 70.0 else "HOLD / NEUTRAL"
+        print("  SEÑAL OPERATIVA RECOMENDADA         : " + decision)
+        print("=====================================================================")
+
+def ejecutar_clase_13():
+    engine = QuantitativeAnalysisEngine("NVDA")
+    fundamental_data = {"pe": 18.5, "fcf_growth": 0.12}
+    technical_data = {"rsi": 54.0, "sma_trend": True}
+    ml_probability = 0.82
+    engine.evaluate_hybrid_quant_alpha(fundamental_data, technical_data, ml_probability)
+
+if __name__ == "__main__":
+    ejecutar_clase_13()`
       },
       {
         id: 14,
