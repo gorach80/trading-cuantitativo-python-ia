@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trading Cuantitativo en Python, Ingeniería Financiera e IA - Plataforma de Aprendizaje</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Chart.js for interactive financial graphs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <header class="navbar">
+    <div class="nav-brand">
+      <div class="brand-icon">Q</div>
+      <div>
+        <h1 class="brand-title">Trading Cuantitativo en Python</h1>
+        <p class="brand-subtitle">Ingeniería Financiera e Inteligencia Artificial</p>
+      </div>
+    </div>
+
+    <div class="nav-stats">
+      <div class="stat-pill">
+        <span>29</span> Secciones
+      </div>
+      <div class="stat-pill">
+        <span>193</span> Clases
+      </div>
+      <div class="stat-pill">
+        <span>25h 15m</span> Duración
+      </div>
+
+      <div class="instructor-badge">
+        <div class="avatar">AM</div>
+        <div class="instructor-info">
+          <h4>Axel Munguía</h4>
+          <p>Instructor Quant & IA</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- App Main Layout Grid -->
+  <div class="app-container">
+
+    <!-- Left Sidebar: 29 Sections & 193 Classes Syllabus -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-title">
+          <span>Contenido del Curso</span>
+          <span id="syllabus-count" style="font-size: 0.8rem; color: var(--text-muted);">193 Clases</span>
+        </div>
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="class-search" class="search-input" placeholder="Buscar lección, indicador, IA...">
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-label">
+            <span>Progreso del Curso</span>
+            <span id="progress-text">0% Completado</span>
+          </div>
+          <div class="progress-track">
+            <div id="progress-fill" class="progress-fill" style="width: 5%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scrollable Sections List -->
+      <div class="sections-list" id="sections-accordion">
+        <!-- Dynamically rendered via JS -->
+      </div>
+    </aside>
+
+    <!-- Main Learning Workspace -->
+    <main class="main-workspace">
+
+      <!-- Hero Classroom Banner Header -->
+      <div class="classroom-hero">
+        <img src="assets/banner.jpg" alt="Quant Trading Banner" class="hero-banner-img">
+        <div class="hero-overlay">
+          <div class="course-breadcrumbs" id="lesson-breadcrumbs">
+            Sección 1 • Clase 1
+          </div>
+          <h2 class="classroom-title" id="current-lesson-title">
+            Estructura del Curso
+          </h2>
+          <div class="classroom-meta-bar">
+            <div class="meta-item">⏱️ Duración: <span id="current-lesson-dur">10:56</span></div>
+            <div class="meta-item">👨‍🏫 Instructor: Axel Francisco Munguía Quintero</div>
+            <div class="meta-item">💻 Código Python Incluido</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="tabs-header">
+        <button class="tab-btn active" data-tab="theory">
+          📖 Lección Teórica
+        </button>
+        <button class="tab-btn" data-tab="ide">
+          ⚡ IDE Python & Terminal (Ejecución en Vivo)
+        </button>
+        <button class="tab-btn" data-tab="backtest">
+          📊 Simulación de Backtesting & KPIs
+        </button>
+        <button class="tab-btn" data-tab="resources">
+          📂 Recursos & Certificaciones
+        </button>
+      </div>
+
+      <!-- Tab Contents Container -->
+      <div class="tab-content-container">
+
+        <!-- Tab 1: Theory Lesson -->
+        <div class="tab-pane active" id="tab-theory">
+          <div class="theory-card">
+            <h3 class="theory-title" id="theory-heading">
+              Objetivo de la Lección
+            </h3>
+            <div class="theory-body" id="theory-content">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Python IDE & Interactive Code Runner -->
+        <div class="tab-pane" id="tab-ide">
+          <div class="ide-container">
+            <div class="editor-box">
+              <div class="box-header">
+                <span>quant_strategy.py</span>
+                <button class="run-btn" id="run-code-btn">▶ Ejecutar Código Python</button>
+              </div>
+              <textarea id="python-code-editor" class="code-editor-area" spellcheck="false"></textarea>
+            </div>
+
+            <div class="terminal-box">
+              <div class="box-header">
+                <span>Terminal Quant Console Output (Python 3.10)</span>
+                <span style="color: var(--accent-emerald);">● Ready</span>
+              </div>
+              <div id="terminal-output" class="terminal-output">
+                // Presiona "Ejecutar Código Python" para compilar y ver los resultados empíricos en vivo...
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Backtest Simulator & KPI Dashboard -->
+        <div class="tab-pane" id="tab-backtest">
+          <div class="playground-grid">
+            <div class="control-panel">
+              <h3 class="control-title">Parámetros de Simulación</h3>
+              
+              <div class="input-group">
+                <div class="input-label">
+                  <span>Capital Inicial ($)</span>
+                  <span id="capital-val">$100,000</span>
+                </div>
+                <input type="range" min="10000" max="500000" step="10000" value="100000" class="slider" id="slider-capital">
+              </div>
+
+              <div class="input-group">
+                <div class="input-label">
+                  <span>Comisión por Orden (%)</span>
+                  <span id="commission-val">0.10%</span>
+                </div>
+                <input type="range" min="0" max="0.5" step="0.01" value="0.10" class="slider" id="slider-commission">
+              </div>
+
+              <div class="input-group">
+                <div class="input-label">
+                  <span>Deslizamiento / Slippage (%)</span>
+                  <span id="slippage-val">0.05%</span>
+                </div>
+                <input type="range" min="0" max="0.3" step="0.01" value="0.05" class="slider" id="slider-slippage">
+              </div>
+
+              <div class="input-group">
+                <div class="input-label">
+                  <span>Horizonte de Estrategia</span>
+                  <span id="horizon-val">Intradía / Swing</span>
+                </div>
+                <select class="search-input" id="select-strategy">
+                  <option value="rsi_supertrend">Estrategia SuperTrend + RSI</option>
+                  <option value="magic_formula">Fórmula Mágica + DCF Value</option>
+                  <option value="hmm_regime">IA No Supervisada HMM Filtro</option>
+                </select>
+              </div>
+
+              <button class="run-btn" style="width: 100%; margin-top: 0.5rem;" id="sim-backtest-btn">
+                🔄 Recalcular Backtesting
+              </button>
+            </div>
+
+            <div>
+              <div class="kpi-cards-grid">
+                <div class="kpi-stat-card">
+                  <span class="kpi-stat-name">Capital Final</span>
+                  <span class="kpi-stat-val" id="kpi-capital">$152,500</span>
+                </div>
+                <div class="kpi-stat-card">
+                  <span class="kpi-stat-name">CAGR (%)</span>
+                  <span class="kpi-stat-val" id="kpi-cagr">11.18%</span>
+                </div>
+                <div class="kpi-stat-card">
+                  <span class="kpi-stat-name">Coeficiente Sharpe</span>
+                  <span class="kpi-stat-val" id="kpi-sharpe">0.85</span>
+                </div>
+                <div class="kpi-stat-card">
+                  <span class="kpi-stat-name">Max Drawdown</span>
+                  <span class="kpi-stat-val" id="kpi-mdd" style="color: var(--accent-rose);">-18.4%</span>
+                </div>
+              </div>
+
+              <div class="kpi-chart-card">
+                <canvas id="backtestChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: Resources & Certifications -->
+        <div class="tab-pane" id="tab-resources">
+          <div class="theory-card">
+            <h3 class="theory-title">Recursos de la Lección & Guías de Carrera</h3>
+            <div class="theory-body">
+              <p>Descarga el código fuente de esta lección o consulta las guías adicionales del instructor:</p>
+              <ul>
+                <li>📄 <a href="docs/certificaciones_y_carrera.md" target="_blank" style="color: var(--accent-cyan);">Guía Oficial de Certificaciones Financieras (CFA, FRM, CQF, CMT)</a></li>
+                <li>🏛️ <a href="docs/plataformas_escaneres_y_fiscalidad.md" target="_blank" style="color: var(--accent-cyan);">Guía de Plataformas, Escáneres de Acciones y Fiscalidad W-8BEN</a></li>
+                <li>📦 Repositorio Python completo: <code>quant_trading/</code></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Navigation Controls -->
+      <footer class="classroom-footer-nav">
+        <button class="nav-btn" id="prev-lesson-btn">
+          ← Lección Anterior
+        </button>
+
+        <button class="nav-btn primary" id="complete-lesson-btn">
+          ✓ Marcar como Completada
+        </button>
+
+        <button class="nav-btn" id="next-lesson-btn">
+          Siguiente Lección →
+        </button>
+      </footer>
+
+    </main>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

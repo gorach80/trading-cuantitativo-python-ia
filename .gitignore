@@ -1,0 +1,12 @@
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+ENV/
+
+# Temporary files
+scratch/
+.pytest_cache/
