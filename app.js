@@ -312,19 +312,44 @@ if __name__ == "__main__":
         title: "Udemy: Herramientas y Recursos",
         dur: "02:40",
         theory: `
-          <h3>Transcripción Magistral y Desarrollo Teórico Completo (02:40 min)</h3>
-          <p>Exploración de la estructura del repositorio de archivos <code>quant_trading/</code> y uso de las herramientas de aprendizaje de la plataforma.</p>
+          <h3>📖 Transcripción Magistral y Fundamentos Financieros (Trading para Principiantes)</h3>
+          <p>En esta lección de 2 minutos y 40 segundos exploramos la estructura organizativa del proyecto de software <code>quant_trading/</code> y cómo navegar en los recursos de aprendizaje del curso.</p>
+
           <div class="theory-callout">
-            <b>Organización del Proyecto:</b><br>
-            - <code>main.py</code>: Orquestador del pipeline unificado.<br>
-            - <code>quant_trading/</code>: Módulos core, data, backtesting, indicators, analysis, models, execution.<br>
-            - <code>docs/</code>: Manuales teóricos, guías de certificaciones y fiscalidad W-8BEN.
+            <b>💡 Organización del Proyecto de Trading Profesional:</b><br>
+            - <b><code>main.py</code>:</b> El orquestador principal (centro de mando) que enciende el bot y coordina la descarga de datos, cálculo de señales e instrucciones al broker.<br>
+            - <b><code>quant_trading/</code>:</b> La biblioteca modular dividida en submódulos especializados (<i>core, data, backtesting, indicators, analysis, models, execution</i>).<br>
+            - <b><code>docs/</code>:</b> Repositorio de documentación con manuales teóricos, certificaciones profesionales (CFA, FRM) y formularios fiscales (W-8BEN).
+          </div>
+
+          <h3>🏛️ Recursos y Herramientas a tu Disposición:</h3>
+          <ul>
+            <li><b>Sección de Preguntas y Respuestas (Q&A):</b> Canal de soporte técnico directo con el instructor.</li>
+            <li><b>Código Fuente Descargable:</b> Scripts autónomos `.py` para cada clase probados en Python 3.10+.</li>
+            <li><b>Plataforma Web Interactiva:</b> Entorno en vivo para simular backtesting y ejecutar código en tiempo real.</li>
+          </ul>
+
+          <h3>🐍 Teoría y Sintaxis de Programación en Python desde Cero:</h3>
+          <p>En esta clase aprenderás a interactuar con el sistema de archivos del disco duro utilizando el módulo nativo <b><code>os</code></b> de Python.</p>
+
+          <div class="theory-callout">
+            <b>🔍 Desglose de Sintaxis Python para Principiantes:</b><br>
+            - <code>import os</code>: Módulo que proporciona funciones para interactuar con el sistema operativo.<br>
+            - <code>os.getcwd()</code>: Obtiene la ruta del directorio de trabajo actual (<i>Get Current Working Directory</i>).<br>
+            - <code>os.path.join(ruta, archivo)</code>: Construye una ruta de archivo compatible de forma automática, usando barras invertidas <code>\\</code> en Windows y barras diagonales <code>/</code> en macOS/Linux.<br>
+            - <code>os.path.exists(ruta)</code>: Devuelve <code>True</code> si el archivo o carpeta existe físicamente en el disco duro, y <code>False</code> si no se encuentra.<br>
+            - <code>[('archivo.py', 'Descripción'), ...]</code>: Una <b>Tupla</b> <code>('a', 'b')</code> es una secuencia inmutable entre paréntesis. Al combinarlas en una lista, creamos tablas de datos ordenadas.<br>
+            - <code>item.ljust(35)</code>: Método que rellena el texto con espacios a la derecha hasta alcanzar 35 caracteres para alinear columnas visualmente en la terminal.
           </div>
         `,
-        code: `# clase_05_recursos.py - Código Completo de la Clase 5
+        code: `# clase_05_recursos.py - Código Completo y Comentado para Principiantes
 import os
 
 class CourseResourceManager:
+    """
+    Clase que escanea y verifica la existencia de archivos y carpetas del proyecto.
+    Demuestra el uso del módulo 'os', tuplas, comprobación de rutas y alineación de cadenas.
+    """
     def __init__(self, workspace_root):
         self.workspace_root = workspace_root
 
@@ -332,6 +357,8 @@ class CourseResourceManager:
         print("=====================================================================")
         print("  INVENTARIO DE RECURSOS Y ESTRUCTURA DE ARCHIVOS DEL CURSO           ")
         print("=====================================================================")
+        
+        # Lista de Tuplas: cada tupla contiene (Nombre_Archivo, Descripción)
         elementos_clave = [
             ('main.py', 'Orquestador Unificado de Producción'),
             ('quant_trading/core', 'Módulo Core (POO, Multiprocessing, Locks)'),
@@ -344,17 +371,30 @@ class CourseResourceManager:
             ('index.html', 'Plataforma Web Interactiva (GitHub Pages)'),
             ('docs/contenido_teorico_completo.md', 'Manual Teórico Magistral Completo')
         ]
+        
+        # Bucle FOR para verificar la existencia de cada elemento
         for item, desc in elementos_clave:
-            path = os.path.join(self.workspace_root, item)
-            status = "[DISPONIBLE]" if os.path.exists(path) else "[PENDIENTE]"
-            print(f"  {status.ljust(14)} {item.ljust(35)} -> {desc}")
+            # os.path.join une la carpeta raíz con el nombre de archivo de forma segura
+            full_path = os.path.join(self.workspace_root, item)
+            
+            # os.path.exists verifica si el archivo o carpeta existe realmente
+            if os.path.exists(full_path):
+                status = "[✓ DISPONIBLE]"
+            else:
+                status = "[⚠ PENDIENTE]"
+                
+            # ljust(35) alinea el texto a 35 caracteres para que las flechas queden ordenadas
+            print(f"  {status.ljust(15)} {item.ljust(35)} -> {desc}")
+            
         print("=====================================================================")
 
 def ejecutar_clase_05():
-    root = os.getcwd()
-    manager = CourseResourceManager(root)
+    # Obtener el directorio actual donde se está ejecutando el script
+    root_dir = os.getcwd()
+    manager = CourseResourceManager(root_dir)
     manager.scan_resources()
 
+# Punto de entrada principal
 if __name__ == "__main__":
     ejecutar_clase_05()`
       },
