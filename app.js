@@ -403,55 +403,83 @@ if __name__ == "__main__":
         title: "Preguntas Frecuentes y Soluciones (FAQ)",
         dur: "02:09",
         theory: `
-          <h3>Transcripción Magistral y Desarrollo Teórico Completo (02:09 min)</h3>
-          <p>Resolución de incidencias técnicas comunes: límites en <code>yfinance</code>, Pickling Errors en Windows con <code>multiprocessing</code> y gestión de entornos virtuales.</p>
+          <h3>📖 Transcripción Magistral y Fundamentos Financieros (Trading para Principiantes)</h3>
+          <p>En esta lección de 2 minutos y 9 segundos revisamos las soluciones prácticas a los problemas más comunes al desarrollar sistemas cuantitativos y conectarse a mercados financieros.</p>
+
           <div class="theory-callout">
-            <b>Regla de Oro en Windows:</b> Para evitar Pickling Errors en <code>multiprocessing</code>, las funciones paralelas deben definirse siempre en el nivel superior (top-level) del archivo.
+            <b>💡 Diagnóstico de Incidencias en Trading Cuantitativo:</b><br>
+            - <b>Error de Límite de Peticiones (Rate Limit Exceeded):</b> Ocurre cuando un script en Python solicita datos a un broker más rápido de lo permitido por la API. Se soluciona implementando pausas (<i>throttling</i>) o cachés locales.<br>
+            - <b>Descalce de Zonas Horarias (Timezone Mismatch):</b> Los precios históricos vienen registrados en tiempo UTC, mientras que las bolsas de valores (como el NYSE) operan en hora de Nueva York (EST/EDT). Se resuelve convirtiendo marcas de tiempo con <code>pandas.tz_convert()</code>.<br>
+            - <b>Valores Faltantes por Días Festivos (NaNs):</b> Días en los que el mercado bursátil está cerrado. Se soluciona limpiando datos con imputación o eliminación controlada (<code>dropna()</code> / <code>fillna()</code>).
+          </div>
+
+          <h3>🏛️ Protocolo de Soporte Técnico en el Curso:</h3>
+          <ul>
+            <li><b>1. Consultar el Módulo FAQ Integrado:</b> Verificación inmediata de códigos de error comunes.</li>
+            <li><b>2. Sección de Q&A en Udemy:</b> Publicación de capturas de pantalla y trazas de error (<i>Traceback</i>).</li>
+            <li><b>3. Repositorio de Soluciones:</b> Guía de actualización de dependencias con <code>pip</code>.</li>
+          </ul>
+
+          <h3>🐍 Teoría y Sintaxis de Programación en Python desde Cero:</h3>
+          <p>En esta clase aprenderás a estructurar bases de conocimiento usando <b>Diccionarios Anidados</b> en Python.</p>
+
+          <div class="theory-callout">
+            <b>🔍 Desglose de Sintaxis Python para Principiantes:</b><br>
+            - <code>dict_anidado = {"ID": {"campo1": "valor1", "campo2": "valor2"}}</code>: Un <b>Diccionario Anidado</b> consiste en guardar un diccionario dentro de otro diccionario para organizar datos jerárquicos estructurados.<br>
+            - <code>data["pregunta"]</code>: Acceso a un valor específico dentro del diccionario interno usando su clave entre corchetes.<br>
+            - <code>\\n</code>: Carácter de escape especial que inserta un <b>Salto de Línea</b> en el texto.<br>
+            - <code>print(f"... {variable} ...")</code>: Concatenación y formateo de texto dinámico de múltiples líneas.
           </div>
         `,
-        code: `# clase_06_faq.py - Código Completo de la Clase 6
-import sys
-import pandas as pd
-import numpy as np
-import yfinance as yf
-from sklearn.ensemble import RandomForestClassifier
-
-def dummy_worker(x):
-    return x * x
-
-class SystemTroubleshooter:
+        code: `# clase_06_faq.py - Código Completo y Comentado para Principiantes
+class QuantTroubleshooter:
+    """
+    Clase que implementa un gestor de preguntas frecuentes y diagnóstico de errores Quant.
+    Demuestra la estructuración de Diccionarios Anidados y formateo de mensajes en Python.
+    """
     def __init__(self):
-        self.diagnostics = []
+        # Diccionario Anidado: cada clave contiene otro diccionario con la solución
+        self.knowledge_base = {
+            "ERR_01_MODULE_NOT_FOUND": {
+                "pregunta": "¿Por qué aparece 'ModuleNotFoundError: No module named quant_trading'?",
+                "solucion": "Ejecutar 'pip install -e .' en la raíz del proyecto para registrar la librería en Python."
+            },
+            "ERR_02_RATE_LIMIT": {
+                "pregunta": "¿Por qué la API de Yahoo Finance o Binance bloquea mis peticiones?",
+                "solucion": "Has superado el límite de peticiones por minuto. Implementa time.sleep(1.0) entre descargas."
+            },
+            "ERR_03_TIMEZONE": {
+                "pregunta": "¿Por qué mis fechas de precios no coinciden con las horas locales?",
+                "solucion": "Los datos de mercado vienen en UTC. Aplica df.index = df.index.tz_convert('America/New_York')."
+            }
+        }
 
-    def check_components(self):
-        try:
-            rf = RandomForestClassifier(n_estimators=5)
-            rf.fit([[1, 2], [3, 4]], [0, 1])
-            self.diagnostics.append(("Scikit-Learn ML", "OK", "Modelo entrenado exitosamente"))
-        except Exception as e:
-            self.diagnostics.append(("Scikit-Learn ML", "ERROR", str(e)))
+    def resolve_issue(self, error_code):
+        # Comprobar si el código de error existe en la base de datos
+        if error_code in self.knowledge_base:
+            info = self.knowledge_base[error_code]
+            print(f"\\n [CÓDIGO ERROR: {error_code}]")
+            print(f"  📌 Pregunta : {info['pregunta']}")
+            print(f"  💡 Solución : {info['solucion']}")
+        else:
+            print(f"\\n [!] Código de error '{error_code}' no registrado. Consultar en el foro Q&A.")
 
-        try:
-            df = pd.DataFrame({'Close': [100, 102, 105]})
-            ret = df['Close'].pct_change()
-            self.diagnostics.append(("Pandas DataFrames", "OK", f"Retornos calculados: {len(ret)} filas"))
-        except Exception as e:
-            self.diagnostics.append(("Pandas DataFrames", "ERROR", str(e)))
-
-    def print_report(self):
+    def display_all_faqs(self):
         print("=====================================================================")
-        print("  DIAGNÓSTICO AUTOMÁTICO DE SOLUCIÓN DE ERRORES (FAQ)                ")
+        print("  MÓDULO DE PREGUNTAS FRECUENTES Y SOLUCIÓN DE ERRORES (FAQ)        ")
         print("=====================================================================")
-        for test, status, detail in self.diagnostics:
-            badge = "[✓ SUCCESS]" if status == "OK" else "[⚠ ERROR]"
-            print(f"  {badge.ljust(14)} {test.ljust(25)} : {detail}")
-        print("=====================================================================")
+        
+        # Bucle FOR para recorrer el diccionario anidado principal
+        for code in self.knowledge_base:
+            self.resolve_issue(code)
+            
+        print("\\n=====================================================================")
 
 def ejecutar_clase_06():
-    ts = SystemTroubleshooter()
-    ts.check_components()
-    ts.print_report()
+    troubleshooter = QuantTroubleshooter()
+    troubleshooter.display_all_faqs()
 
+# Punto de entrada principal
 if __name__ == "__main__":
     ejecutar_clase_06()`
       },
