@@ -1,6 +1,6 @@
-/* app.js: Enriched Course Masterclass Data & Interactive Platform Logic */
+/* app.js: Fixed Logic & Rich Lesson Content for Quant Trading Course Platform */
 
-// Full Course Data Structure with In-Depth Masterclass Transcripts matching Video Durations
+// Full Course Data Structure (29 Sections, 193 Classes)
 const COURSE_DATA = [
   {
     id: 1,
@@ -11,22 +11,22 @@ const COURSE_DATA = [
         title: "Estructura del Curso", 
         dur: "10:56", 
         theory: `
-          <h3>Transcripción y Guía de la Clase (10:56 min)</h3>
-          <p>¡Bienvenidos a la clase magistral de <b>Estructura del Curso: Trading Cuantitativo en Python, Ingeniería Financiera e IA</b>! En esta lección de 10 minutos y 56 segundos abordamos la hoja de ruta completa que te transformará de un estudiante o trader tradicional a un <b>Desarrollador / Trader Quant Profesional</b>.</p>
-          
+          <h3>Visión General y Mapa de Ruta (10:56 min)</h3>
+          <p>Bienvenidos al curso de <b>Trading Cuantitativo en Python, Ingeniería Financiera e Inteligencia Artificial</b>. En esta clase de 10:56 minutos exploramos la estructura completa del mapa de ruta, diseñado para llevarte progresivamente desde los fundamentos hasta el trading algorítmico institucional.</p>
+
           <div class="theory-callout">
-            <b>🎯 Mapa de Ruta del Aprendizaje:</b><br>
-            A diferencia del trading tradicional o discrecional (donde se toman decisiones visuales basadas en intuición y emociones), el trading cuantitativo se fundamenta en el método científico: <b>Hipótesis -> Extracción de Datos (ETL) -> Formulación Matemática -> Backtesting con Costos Reales -> Despliegue Automatizado</b>.
+            <b>🎯 Filosofía Cuantitativa:</b><br>
+            A diferencia del trading discrecional tradicional, el trading cuantitativo reemplaza la intuición subjetiva y el sesgo emocional por modelos matemáticos, análisis estadístico y código automatizado comprobable.
           </div>
 
-          <h3>Ejes Principales del Programa:</h3>
+          <h3>Ejes Principales del Programa (6 Bloques):</h3>
           <ul>
-            <li><b>Bloque 1: Programación Orientada a Objetos y Cómputo Paralelo:</b> Diseñaremos clases abstractas base (<code>BaseStrategy</code>) y utilizaremos <code>multiprocessing</code> y <code>threading</code> con cerrojos (<code>Lock</code>) para procesar volúmenes masivos de datos sin condiciones de carrera.</li>
-            <li><b>Bloque 2: Mercados, Instrumentos y APIs de Brokers:</b> Análisis operativo de Acciones, Forex, Futuros, Opciones y CFDs vs DMA. Conexión con <b>Interactive Brokers (IBAPI), OANDA REST v20, FXCM y Binance</b>.</li>
-            <li><b>Bloque 3: Métricas KPI e Indicadores Técnicos (+100):</b> Desarrollo en Python del cálculo de <b>CAGR, Coeficiente de Sharpe, Coeficiente de Sortino, Maximum Drawdown (MDD %) y Calmar Ratio</b>.</li>
-            <li><b>Bloque 4: Backtesting Realista & Análisis Fundamental/NLP:</b> Motor de simulación vectorizado con comisiones (0.1%) y slippage (0.05%), Valor Intrínseco DCF, Fórmula Mágica de Joel Greenblatt y Análisis de Sentimiento VADER NLP.</li>
-            <li><b>Bloque 5: Inteligencia Artificial & Machine Learning:</b> Modelos No Supervisados de Márkov Ocultos (HMM) para regímenes de mercado, Random Forest / XGBoost y Redes Neuronales Multicapa (Deep Learning).</li>
-            <li><b>Bloque 6: Sistema Unificado & Despliegue en Vivo:</b> Orquestación del pipeline completo en <code>main.py</code>, gestión de riesgos, cuentas de fondeo, certificaciones financieras (CFA, FRM, CQF, CMT) y fiscalidad.</li>
+            <li><b>Bloque 1: Programación Orientada a Objetos y Cómputo Paralelo:</b> Clases abstractas base (<code>BaseStrategy</code>), multitarea en hilos y procesamiento multinúcleo con cerrojos de sincronización (<code>Lock</code>).</li>
+            <li><b>Bloque 2: Mercados Financieros & APIs de Brokers:</b> Acciones, Forex, Futuros, Opciones y CFDs. Integración con <b>Interactive Brokers (IBAPI), OANDA REST v20, FXCM y Binance</b>.</li>
+            <li><b>Bloque 3: Indicadores Clave de Rendimiento (KPIs) e Indicadores Técnicos (+100):</b> Cálculo en código de <b>CAGR, Coeficiente Sharpe, Sortino, Maximum Drawdown (MDD %) y Calmar Ratio</b>.</li>
+            <li><b>Bloque 4: Backtesting Realista & Análisis Fundamental/NLP:</b> Motores de simulación con comisiones (0.1%) y slippage (0.05%), Flujo de Caja Descontado (DCF), Fórmula Mágica de Joel Greenblatt y VADER NLP.</li>
+            <li><b>Bloque 5: Inteligencia Artificial & Machine Learning:</b> Modelos No Supervisados HMM para regímenes de mercado, Random Forest Supervisado y Redes Neuronales Multicapa (Deep Learning).</li>
+            <li><b>Bloque 6: Sistema Unificado & Producción:</b> Orquestación automatizada en <code>main.py</code>, gestión de riesgos, cuentas de fondeo, certificaciones (CFA, FRM, CQF, CMT) y fiscalidad.</li>
           </ul>
         `,
         code: `# Módulos Integrados del Curso Quant
@@ -48,12 +48,12 @@ print("Módulos Core, Data, Backtesting, Indicators, Analysis, Models y Executio
         title: "Requisitos Elementales", 
         dur: "01:39", 
         theory: `
-          <h3>Transcripción y Guía de la Clase (01:39 min)</h3>
-          <p>En esta lección repasamos las herramientas elementales necesarias. El curso incluye un <b>Curso Intensivo de Python desde Cero (Apéndice)</b>, por lo que no requieres experiencia previa en programación.</p>
+          <h3>Requisitos del Entorno (01:39 min)</h3>
+          <p>Revisión de herramientas necesarias. El curso incluye un <b>Curso Intensivo de Python desde Cero (Apéndice)</b>, por lo que no requieres experiencia previa en programación.</p>
           <ul>
-            <li><b>Computadora:</b> Windows, Mac o Linux capaz de ejecutar Anaconda Navigator y VS Code.</li>
-            <li><b>Matemáticas y Estadística:</b> Nivel bachillerato (las fórmulas complejas las traduciremos paso a paso a código Python).</li>
-            <li><b>Conexión a Internet:</b> Necesaria para descargar datos históricos de Yahoo Finance, Binance y enviar órdenes a brokers.</li>
+            <li><b>Computadora:</b> Windows, Mac o Linux capaz de ejecutar Anaconda y VS Code.</li>
+            <li><b>Matemáticas y Estadística:</b> Nivel bachillerato (las fórmulas cuantitativas las traduciremos a código Python paso a paso).</li>
+            <li><b>Conexión a Internet:</b> Para extracción de datos en tiempo real y conexión con broker APIs.</li>
           </ul>
         `,
         code: `import sys, os
@@ -65,9 +65,8 @@ print(f"Plataforma OS: {sys.platform}")`
         title: "Conoce a tu Instructor y Bienvenida",
         dur: "01:43",
         theory: `
-          <h3>Transcripción y Guía de la Clase (01:43 min)</h3>
-          <p>¡Saludos! Soy <b>Axel Francisco Munguía Quintero</b>, tu Instructor. Soy Ingeniero Financiero y poseo una Maestría en Inteligencia Artificial Aplicada, complementada con más de 30 certificaciones internacionales en Ciberseguridad, Desarrollo de Software y Finanzas Cuantitativas.</p>
-          <p>Mi compromiso es guiarte paso a paso hasta que domines la creación de algoritmos cuantitativos reales de nivel institucional.</p>
+          <h3>Bienvenida del Instructor (01:43 min)</h3>
+          <p>Soy <b>Axel Francisco Munguía Quintero</b>, Ingeniero Financiero y Máster en Inteligencia Artificial Aplicada, con más de 30 certificaciones internacionales. Mi objetivo es guiarte paso a paso para que construyas tus propios algoritmos cuantitativos con estándar institucional.</p>
         `,
         code: `print("Instructor: Axel Francisco Munguía Quintero")
 print("Perfil: Ingeniero Financiero & Master en IA Aplicada")`
@@ -77,8 +76,8 @@ print("Perfil: Ingeniero Financiero & Master en IA Aplicada")`
         title: "Evaluaciones Tempranas",
         dur: "01:29",
         theory: `
-          <h3>Transcripción y Guía de la Clase (01:29 min)</h3>
-          <p>Explicación de las evaluaciones formativas iniciales diseñadas para medir tu nivel de partida en conceptos financieros y lógica de programación.</p>
+          <h3>Diagnóstico Inicial (01:29 min)</h3>
+          <p>Evaluación inicial diseñada para medir tu nivel de partida en conceptos financieros y lógica de programación.</p>
         `,
         code: `print("Evaluación Diagnóstica Inicial Completada.")`
       },
@@ -87,8 +86,8 @@ print("Perfil: Ingeniero Financiero & Master en IA Aplicada")`
         title: "Udemy: Herramientas y Recursos",
         dur: "02:40",
         theory: `
-          <h3>Transcripción y Guía de la Clase (02:40 min)</h3>
-          <p>Guía de uso de la plataforma Udemy, panel de preguntas y respuestas (Q&A), descargas de código fuente de cada lección y ajustes de velocidad de reproducción del vídeo.</p>
+          <h3>Herramientas de Aprendizaje (02:40 min)</h3>
+          <p>Uso de la plataforma, panel de preguntas Q&A, descargas de código fuente de cada lección y ajustes de velocidad de reproducción.</p>
         `,
         code: `print("Recursos del curso disponibles en repositorios y plataforma web.")`
       },
@@ -97,21 +96,20 @@ print("Perfil: Ingeniero Financiero & Master en IA Aplicada")`
         title: "Preguntas Frecuentes y Soluciones (FAQ)",
         dur: "02:09",
         theory: `
-          <h3>Transcripción y Guía de la Clase (02:09 min)</h3>
-          <p>Soluciones a las dudas más comunes sobre la instalación de paquetes (`yfinance`, `scikit-learn`, `pandas`), versiones de Python y resolución de advertencias de entorno.</p>
+          <h3>Solución de Problemas Técnicos (02:09 min)</h3>
+          <p>Resolución de errores comunes con librerías `yfinance`, `scikit-learn`, `pandas` y gestión de virtualenvs.</p>
         `,
         code: `import pandas, numpy, sklearn, yfinance
-print("Todas las librerías principales importadas correctamente sin advertencias.")`
+print("Librerías principales verificadas correctamente sin errores.")`
       },
       {
         id: 7,
         title: "Aviso Legal",
         dur: "01:02",
         theory: `
-          <h3>Transcripción y Guía de la Clase (01:02 min)</h3>
           <div class="theory-callout">
-            <b>Aviso Legal y Descargo de Responsabilidad:</b><br>
-            Todo el material, código y estrategias presentadas en este curso tienen fines estrictamente académicos e investigativos. La rentabilidad pasada obtenida en un backtesting no garantiza rendimientos futuros en mercados reales. La gestión del riesgo y la responsabilidad del capital invertido son de entera incumbencia del estudiante.
+            <b>Aviso Legal Importante:</b><br>
+            El contenido del curso es exclusivamente educativo y de investigación cuantitativa. El rendimiento pasado obtenido en un backtest no garantiza resultados futuros en mercados reales. La gestión del riesgo y la responsabilidad del capital son de entera incumbencia del estudiante.
           </div>
         `,
         code: `print("Aviso Legal: Material 100% Educativo y de Investigación Cuantitativa.")`
@@ -127,14 +125,14 @@ print("Todas las librerías principales importadas correctamente sin advertencia
         title: "Descripción del Flujo de Trabajo",
         dur: "04:19",
         theory: `
-          <h3>Transcripción y Guía de la Clase (04:19 min)</h3>
-          <p>Desglose paso a paso del <b>Flujo de Trabajo Cuantitativo (Quant Workflow)</b> de 5 etapas estandarizadas:</p>
+          <h3>El Flujo Quant de 5 Etapas (04:19 min)</h3>
+          <p>Desglose del proceso cuantitativo estandarizado:</p>
           <ol>
-            <li><b>Fase 1 - Formulación de Hipótesis:</b> Definición de una ventaja estadística (*edge*) basada en patrones técnicos, anomalías fundamentales o NLP.</li>
-            <li><b>Fase 2 - Adquisición de Datos (ETL):</b> Descarga y limpieza de datos OHLCV en tiempo real e históricos.</li>
-            <li><b>Fase 3 - Desarrollo de la Estrategia:</b> Programación orientada a objetos en Python.</li>
-            <li><b>Fase 4 - Backtesting y Optimización Realista:</b> Evaluación de rendimientos considerando comisiones y slippage.</li>
-            <li><b>Fase 5 - Despliegue en Broker API:</b> Enrutamiento automatizado de órdenes al mercado real.</li>
+            <li><b>1. Hipótesis:</b> Ventaja estadística basada en comportamiento o factores de IA.</li>
+            <li><b>2. ETL de Datos:</b> Captura y limpieza de precios OHLCV y noticias NLP.</li>
+            <li><b>3. Modelo en Python:</b> Programación orientada a objetos (POO).</li>
+            <li><b>4. Backtesting Realista:</b> Evaluación considerando comisiones y slippage.</li>
+            <li><b>5. Conexión API:</b> Enrutamiento automatizado de órdenes al broker.</li>
           </ol>
         `,
         code: `workflow = ["1. Hipótesis", "2. ETL Datos", "3. Modelo Python", "4. Backtesting Realista", "5. Despliegue API"]
@@ -146,8 +144,8 @@ for step in workflow:
         title: "Herramientas y Tecnologías",
         dur: "01:28",
         theory: `
-          <h3>Transcripción y Guía de la Clase (01:28 min)</h3>
-          <p>Exploración del ecosistema de software: Anaconda, Python 3.10+, Jupyter, VS Code, Pandas, NumPy, Scikit-Learn, PyTorch, yFinance, Binance API y Interactive Brokers (IBAPI).</p>
+          <h3>Stack Tecnológico (01:28 min)</h3>
+          <p>Python 3.10+, Anaconda Navigator, Pandas, NumPy, Scikit-Learn, PyTorch, yFinance, Binance API y Interactive Brokers (IBAPI).</p>
         `,
         code: `print("Stack Cuantitativo: Python 3.10 + Anaconda + PyTorch + IBAPI")`
       },
@@ -156,34 +154,28 @@ for step in workflow:
         title: "Recomendaciones Generales",
         dur: "01:33",
         theory: `
-          <h3>Transcripción y Guía de la Clase (01:33 min)</h3>
-          <p>Consejos del instructor: escribir código limpio, modularizar componentes en archivos `.py`, documentar funciones con docstrings y evitar el sobreajuste (*overfitting*).</p>
+          <h3>Buenas Prácticas Quant (01:33 min)</h3>
+          <p>Código modular en archivos `.py`, documentación clara y prevención del sobreajuste (*overfitting*).</p>
         `,
         code: `print("Regla de Oro Quant: Evitar el Overfitting y Pruebas Out-of-Sample Rigurosas")`
       },
       {
         id: 11,
-        title: "Mercados Financieros: Inversiones, Negociación y Gestión de Activos",
+        title: "Mercados Financieros",
         dur: "05:06",
         theory: `
-          <h3>Transcripción y Guía de la Clase (05:06 min)</h3>
-          <p>Comprensión profunda de la estructura de los mercados financieros globales: formación de precios a través de la oferta y la demanda, rol de los Creadores de Mercado (*Market Makers*), liquidez y gestión profesional de carteras.</p>
+          <h3>Funcionamiento de Mercados (05:06 min)</h3>
+          <p>Oferta, demanda, liquidez, creadores de mercado (*Market Makers*) y gestión profesional de carteras.</p>
         `,
         code: `print("Mercados Financieros: Formación de Precios, Libros de Órdenes y Liquidez")`
       },
       {
         id: 12,
-        title: "Instrumentos Financieros: Acciones, Divisas, Opciones, Futuros y más",
+        title: "Instrumentos Financieros",
         dur: "05:12",
         theory: `
-          <h3>Transcripción y Guía de la Clase (05:12 min)</h3>
-          <p>Análisis de las características operativas, horarios y riesgos de cada instrumento:</p>
-          <ul>
-            <li><b>Acciones (Equities):</b> Títulos de propiedad con alta liquidez y derechos a dividendos.</li>
-            <li><b>Forex (Divisas):</b> Mercado interbancario descentralizado operando 24/5 por pares (EUR/USD, GBP/USD).</li>
-            <li><b>Futuros y Derivados:</b> Contratos estandarizados con vencimiento y apalancamiento financiero.</li>
-            <li><b>Opciones:</b> Contratos de derechos (Calls/Puts) con volatilidad implícita y griegas (&Delta;, &Gamma;, &Theta;, &nu;).</li>
-          </ul>
+          <h3>Acciones, Divisas, Opciones y Futuros (05:12 min)</h3>
+          <p>Análisis operativo de Acciones (Equities), Forex (Divisas), Futuros estandarizados, Opciones (Calls/Puts) y CFDs vs DMA.</p>
         `,
         code: `instruments = ["Acciones", "Forex (EUR/USD)", "Futuros (ES/NQ)", "Opciones (Calls/Puts)", "CFDs"]
 for inst in instruments:
@@ -191,26 +183,21 @@ for inst in instruments:
       },
       {
         id: 13,
-        title: "Tipos de Análisis: Fundamental, Técnico y Cuantitativo",
+        title: "Tipos de Análisis",
         dur: "05:16",
         theory: `
-          <h3>Transcripción y Guía de la Clase (05:16 min)</h3>
-          <p>Diferencias clave entre las 3 filosofías de inversión:</p>
-          <ul>
-            <li><b>Análisis Fundamental:</b> Valoración basada en balances, estados de resultados y flujos de caja (DCF).</li>
-            <li><b>Análisis Técnico:</b> Gráficos de precios, velas japonesas y patrones de osciladores.</li>
-            <li><b>Análisis Cuantitativo:</b> Enfoque científico que traduce reglas fundamentales y técnicas a modelos matemáticos comprobables mediante código en Python.</li>
-          </ul>
+          <h3>Análisis Fundamental, Técnico y Cuantitativo (05:16 min)</h3>
+          <p>El análisis cuantitativo combina factores fundamentales y técnicos expresados en modelos matemáticos comprobables mediante código.</p>
         `,
         code: `print("Análisis Cuantitativo = Unificación de Análisis Fundamental, Técnico e IA en Código")`
       },
       {
         id: 14,
-        title: "Psicología del Trading: Control Emocional y Toma de Decisiones",
+        title: "Psicología del Trading",
         dur: "03:28",
         theory: `
-          <h3>Transcripción y Guía de la Clase (03:28 min)</h3>
-          <p>El impacto negativo de las emociones humanas en el rendimiento financiero (miedo, avaricia, aversión a la pérdida, exceso de confianza y FOMO). <b>El trading algorítmico elimina la interferencia emocional al delegar la ejecución a reglas rígidas en Python.</b></p>
+          <h3>Eliminación de Sesgos Emocionales (03:28 min)</h3>
+          <p>El trading algorítmico elimina el miedo, la avaricia, el exceso de confianza y el FOMO delegando la ejecución a las reglas del algoritmo en Python.</p>
         `,
         code: `print("Trading Algorítmico: Ejecución 100% Racional Sin Interferencia Emocional")`
       },
@@ -219,72 +206,59 @@ for inst in instruments:
         title: "Trading Algorítmico: Estructuras Automatizadas",
         dur: "06:18",
         theory: `
-          <h3>Transcripción y Guía Magistral de la Clase (06:18 min)</h3>
-          <p>En esta lección magistral de <b>6 minutos y 18 segundos</b> analizamos en profundidad las <b>Estructuras Automatizadas del Trading Algorítmico</b> y cómo transformar estrategias manuales en código ejecutable de alto rendimiento.</p>
+          <h3>Estructuras Automatizadas (Lección Magistral - 06:18 min)</h3>
+          <p>En esta lección magistral de <b>6 minutos y 18 segundos</b> analizamos la arquitectura completa de una <b>Estructura Automatizada de Trading</b>:</p>
 
           <div class="theory-callout">
-            <b>💡 ¿Qué es una Estructura Automatizada?</b><br>
-            Es una arquitectura de software compuesta por un bucle continuo que realiza 4 tareas fundamentales:<br>
-            1. <i>Listening (Escucha de Ticks/Barras):</i> Captura de precios en tiempo real vía WebSockets o REST API.<br>
-            2. <i>Signal Generation (Cálculo de Señal):</i> Evaluación de condiciones de entrada y salida mediante indicadores o IA.<br>
-            3. <i>Risk & Position Sizing (Gestión de Riesgo):</i> Cálculo exacto de lote/acciones según capital y Stop Loss.<br>
-            4. <i>Order Execution (Enrutamiento de Órdenes):</i> Envío de la orden a la API del broker en milisegundos.
+            <b>💡 Las 4 Etapas del Bucle Algorítmico:</b><br>
+            1. <i>Listening (Escucha de Precios):</i> Transmisión continua de precios vía WebSockets o REST API.<br>
+            2. <i>Signal Generation (Cálculo de Señal):</i> Evaluación de indicadores técnicos, modelos HMM o IA.<br>
+            3. <i>Risk & Position Sizing (Gestión de Riesgo):</i> Cálculo del número exacto de acciones o lotes según Stop Loss.<br>
+            4. <i>Order Execution (Enrutamiento de Órdenes):</i> Envío automatizado a la API del broker en menos de 50 milisegundos.
           </div>
 
-          <h3>Ventajas Cuantitativas de la Automatización:</h3>
+          <h3>Ventajas Cuantitativas:</h3>
           <ul>
-            <li><b>Velocidad de Ejecución (Latencia):</b> Mientras un trader humano tarda entre 3 y 10 segundos en analizar y hacer clic para enviar una orden, un algoritmo en Python completa el análisis y el envío en menos de 50 milisegundos.</li>
-            <li><b>Sin Errores Operativos (Fat-Finger Errors):</b> Elimina errores de tipeo en el número de lotes o precios de entrada.</li>
-            <li><b>Monitoreo Multiactivo Simultáneo:</b> Permite supervisar 50 pares de Forex o 500 acciones del S&P 500 al mismo tiempo.</li>
-            <li><b>Optimización de Costos:</b> Monitorea constantemente los spreads y comisiones para operar solo cuando el mercado presente condiciones óptimas.</li>
+            <li><b>Baja Latencia (&lt;50ms):</b> Ejecución instantánea frente a los 3-10 segundos de la operativa manual.</li>
+            <li><b>Cero Errores Operativos (Fat-Finger):</b> Prevención de errores al ingresar el tamaño de lote.</li>
+            <li><b>Monitoreo Multiactivo:</b> Supervisión en tiempo real de 50 a 500 activos simultáneamente.</li>
           </ul>
-
-          <h3>Estructura Interna del Algoritmo en Python:</h3>
-          <p>Un bot cuantitativo automatizado se estructura en Python mediante un bucle principal respaldado por manejo de excepciones para garantizar la operatividad sin interrupciones:</p>
         `,
         code: `import time
 from quant_trading.execution import MockBrokerAPI
 
-# Demostración de Estructura Automatizada de Trading (Lección 15 - 6:18 min)
 class TradingBotAutomated:
     def __init__(self, broker):
         self.broker = broker
-        self.is_running = False
 
-    def start_automated_loop(self, ticker):
-        self.is_running = True
-        print(f"[BOT ATOMATED] Conectando a broker para operar {ticker}...")
+    def start_loop(self, ticker):
+        print(f"[BOT AUTOMATED] Conectando a broker para operar {ticker}...")
         self.broker.connect()
-        
-        # Bucle de Escucha y Ejecución Automatizada
         for tick in range(1, 4):
             print(f" -> [TICK {tick}] Escuchando precios y calculando señales...")
-            time.sleep(0.2)
-            
-        # Ejemplo de Ejecución de Orden Automatizada
+            time.sleep(0.1)
         order = self.broker.place_order(ticker, "BUY", 50, 150.0)
-        print(f"[BOT EXECUTED] Orden Automatizada Enviada: {order['order_id']} | Status: {order['status']}")
+        print(f"[BOT EXECUTED] Orden Enviada: {order['order_id']} | Status: {order['status']}")
 
 broker = MockBrokerAPI(100000.0)
 bot = TradingBotAutomated(broker)
-bot.start_automated_loop("AAPL")`
+bot.start_loop("AAPL")`
       },
       {
         id: 16,
         title: "Trading Cuantitativo: Modelos Matemáticos",
         dur: "03:05",
         theory: `
-          <h3>Transcripción y Guía de la Clase (03:05 min)</h3>
-          <p>Formalización matemática de los modelos de precio, distribuciones de retornos, media, varianza y desviación estándar:</p>
+          <h3>Modelos Matemáticos de Precio y Retorno (03:05 min)</h3>
+          <p>Formalización matemática de los precios y retornos logarítmicos continuos:</p>
           \[
-          r_t = \ln(P_t) - \ln(P_{t-1}), \quad \mu = \frac{1}{N}\sum r_t, \quad \sigma = \sqrt{\frac{1}{N}\sum (r_t - \mu)^2}
+          r_t = \ln(P_t) - \ln(P_{t-1})
           \]
         `,
         code: `import numpy as np
 prices = np.array([100.0, 102.5, 101.0, 104.5, 106.0])
 log_returns = np.diff(np.log(prices))
-print(f"Retornos Logarítmicos: {np.round(log_returns, 4)}")
-print(f"Media r: {np.mean(log_returns):.4f} | Volatilidad sigma: {np.std(log_returns):.4f}")`
+print(f"Retornos Logarítmicos: {np.round(log_returns, 4)}")`
       }
     ]
   },
@@ -294,157 +268,86 @@ print(f"Media r: {np.mean(log_returns):.4f} | Volatilidad sigma: {np.std(log_ret
     lessons: [
       {
         id: 17,
-        title: "Clases en Python: Programación Orientada a Objetos",
+        title: "Clases en Python: POO",
         dur: "13:10",
-        theory: `
-          <h3>Transcripción y Guía de la Clase (13:10 min)</h3>
-          <p>Uso de clases, constructores <code>__init__</code>, encapsulamiento y métodos para estructurar programas cuantitativos modulares.</p>
-        `,
-        code: `class QuantAsset:
-    def __init__(self, ticker, price):
-        self.ticker = ticker
-        self.price = price
-
-    def get_summary(self):
-        return f"Activo: {self.ticker} | Precio: ${self.price}"
-
-a = QuantAsset("BTC-USD", 88000.0)
-print(a.get_summary())`
+        theory: `<h3>Programación Orientada a Objetos (13:10 min)</h3><p>Uso de clases, atributos, métodos y encapsulamiento para estructurar programas cuantitativos modulares.</p>`,
+        code: `class QuantAsset:\n    def __init__(self, ticker, price):\n        self.ticker = ticker\n        self.price = price\n    def get_summary(self):\n        return f"Activo: {self.ticker} | Precio: ${self.price}"\na = QuantAsset("BTC-USD", 88000.0)\nprint(a.get_summary())`
       },
       {
         id: 18,
         title: "Herencia de Clases",
         dur: "09:17",
-        theory: `
-          <h3>Transcripción y Guía de la Clase (09:17 min)</h3>
-          <p>Implementación de herencia simple para crear familias de estrategias reutilizables basadas en <code>BaseStrategy</code>.</p>
-        `,
-        code: `from quant_trading.core import BaseStrategy
-
-class MACrossStrategy(BaseStrategy):
-    def generate_signals(self, df):
-        df["Signal"] = 1
-        return df
-
-s = MACrossStrategy("MA_Cross_5_20")
-print(f"Estrategia Heredada Instanciada: {s.name}")`
+        theory: `<h3>Herencia de Clases (09:17 min)</h3><p>Extensión de la clase abstracta BaseStrategy para crear familias de estrategias reutilizables.</p>`,
+        code: `from quant_trading.core import BaseStrategy\nclass MACrossStrategy(BaseStrategy):\n    def generate_signals(self, df):\n        df["Signal"] = 1\n        return df\ns = MACrossStrategy("MA_Cross_5_20")\nprint(f"Estrategia Heredada Instanciada: {s.name}")`
       },
       {
         id: 19,
         title: "Herencia Simple y Múltiple",
         dur: "06:48",
-        theory: `
-          <h3>Transcripción y Guía de la Clase (06:48 min)</h3>
-          <p>Ventajas y resolución de orden de método (MRO) en la herencia múltiple para combinar indicadores y gestión de riesgos.</p>
-        `,
+        theory: `<h3>Herencia Múltiple (06:48 min)</h3><p>Resolución de orden de método (MRO) en Python para combinar múltiples clases de indicadores y gestión de riesgo.</p>`,
         code: `print("Herencia Múltiple en Python: MRO Resolutivo para Estrategias Complejas")`
       },
       {
         id: 20,
-        title: "Cómputo Paralelo y Concurrente en Python",
+        title: "Cómputo Paralelo y Concurrente",
         dur: "04:10",
-        theory: `
-          <h3>Transcripción y Guía de la Clase (04:10 min)</h3>
-          <p>Introducción al paralelismo con <code>concurrent.futures</code> para maximizar el uso de procesadores multinúcleo.</p>
-        `,
-        code: `from quant_trading.core import ParallelExecutor
-print("Engine de Cómputo Paralelo Listo para Procesos e Hilos")`
+        theory: `<h3>Cómputo Paralelo (04:10 min)</h3><p>Paralelización de cargas de trabajo en procesadores multinúcleo para acelerar simulaciones.</p>`,
+        code: `from quant_trading.core import ParallelExecutor\nprint("Engine de Cómputo Paralelo Listo para Procesos e Hilos")`
       },
       {
         id: 21,
         title: "Hilos (Threads): Manejo de Concurrencia",
         dur: "07:01",
-        theory: `
-          <h3>Transcripción y Guía de la Clase (07:01 min)</h3>
-          <p>Uso de hilos (`ThreadPoolExecutor`) para gestionar llamadas concurrentes a APIs de brokers y descarga de cotizaciones.</p>
-        `,
-        code: `import concurrent.futures, time
-def fetch_ticker(t):
-    time.sleep(0.05)
-    return f"Quote {t}: $150.0"
-
-with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
-    res = list(executor.map(fetch_ticker, ["AAPL", "MSFT", "GOOGL"]))
-print(res)`
+        theory: `<h3>Concurrencia con Hilos (07:01 min)</h3><p>ThreadPoolExecutor para llamadas simultáneas a APIs de brokers y Web Scraping.</p>`,
+        code: `import concurrent.futures, time\ndef fetch_ticker(t):\n    time.sleep(0.05)\n    return f"Quote {t}: $150.0"\nwith concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:\n    res = list(executor.map(fetch_ticker, ["AAPL", "MSFT", "GOOGL"]))\nprint(res)`
       },
       {
         id: 22,
         title: "Procesos: Cómputo Intensivo",
         dur: "10:48",
-        theory: `
-          <h3>Transcripción y Guía de la Clase (10:48 min)</h3>
-          <p>Paralelización en núcleos independientes con `ProcessPoolExecutor` para optimización masiva de hiperparámetros.</p>
-        `,
-        code: `import multiprocessing as mp
-print(f"Cómputo Intensivo en {mp.cpu_count()} núcleos CPU")`
+        theory: `<h3>Multiprocessing (10:48 min)</h3><p>Ejecución en núcleos CPU independientes para optimización masiva de parámetros.</p>`,
+        code: `import multiprocessing as mp\nprint(f"Cómputo Intensivo en {mp.cpu_count()} núcleos CPU")`
       },
       {
         id: 23,
         title: "Sincronizadores: Integridad en los Datos",
         dur: "08:36",
-        theory: `
-          <h3>Transcripción y Guía de la Clase (08:36 min)</h3>
-          <p>Protección contra condiciones de carrera (*race conditions*) utilizando `TaskSynchronizer` con `threading.Lock()`.</p>
-        `,
-        code: `from quant_trading.core import TaskSynchronizer
-sync = TaskSynchronizer()
-sync.increment()
-print(f"Contador Seguro con Cerrojo: {sync.counter}")`
+        theory: `<h3>Sincronizadores y Locks (08:36 min)</h3><p>TaskSynchronizer con cerrojos de seguridad para evitar condiciones de carrera en variables compartidas.</p>`,
+        code: `from quant_trading.core import TaskSynchronizer\nsync = TaskSynchronizer()\nsync.increment()\nprint(f"Contador Seguro con Cerrojo: {sync.counter}")`
       },
       {
         id: 24,
         title: "Comparativa: Velocidad y Eficiencia",
         dur: "01:48",
-        theory: `
-          <h3>Transcripción y Guía de la Clase (01:48 min)</h3>
-          <p>Evaluación empírica de velocidad: Secuencial vs Multithreading vs Multiprocessing.</p>
-        `,
-        code: `from quant_trading.core import ParallelExecutor, dummy_compute_task
-res = ParallelExecutor.benchmark_execution(dummy_compute_task, [1, 2, 3, 4])
-print("Benchmark Results:", res)`
+        theory: `<h3>Benchmark de Cómputo (01:48 min)</h3><p>Medición empírica de velocidad: Secuencial vs Threads vs Processes.</p>`,
+        code: `from quant_trading.core import ParallelExecutor, dummy_compute_task\nres = ParallelExecutor.benchmark_execution(dummy_compute_task, [1, 2, 3, 4])\nprint("Benchmark Results:", res)`
       }
     ]
   },
   {
     id: 4,
-    title: "Broker Interactive Brokers, OANDA y FXCM",
+    title: "Conexiones Broker APIs: OANDA, FXCM e IBKR",
     lessons: [
       {
         id: 25,
         title: "Introducción a Interactive Brokers (IBAPI)",
         dur: "05:10",
-        theory: `
-          <h3>Transcripción y Guía de la Clase (05:10 min)</h3>
-          <p>Presentación de la API de Interactive Brokers para gestión institucional de posiciones y órdenes.</p>
-        `,
-        code: `from quant_trading.execution import MockBrokerAPI
-ib = MockBrokerAPI(100000.0, "InteractiveBrokers")
-ib.connect()
-print(ib.get_account_summary())`
+        theory: `<h3>Interactive Brokers API (05:10 min)</h3><p>Conexión directa a TWS o IB Gateway para gestión institucional de órdenes y datos.</p>`,
+        code: `from quant_trading.execution import MockBrokerAPI\nib = MockBrokerAPI(100000.0, "InteractiveBrokers")\nib.connect()\nprint(ib.get_account_summary())`
       },
       {
         id: 26,
         title: "Obtener Datos Históricos en IBKR",
         dur: "15:12",
-        theory: `
-          <h3>Transcripción y Guía de la Clase (15:12 min)</h3>
-          <p>Métodos para solicitar barras históricas de precios a través de la API de IBKR.</p>
-        `,
-        code: `print("Solicitando barras de 1 día para contrato AAPL en IBKR API...")`
+        theory: `<h3>Datos Históricos IBKR (15:12 min)</h3><p>Solicitud de barras históricas a la API de IBKR en diferentes marcos temporales.</p>`,
+        code: `print("Solicitando barras históricas a IBKR API...")`
       },
       {
         id: 27,
-        title: "Tipos de Órdenes y su Ejecución en IBKR",
+        title: "Tipos de Órdenes en IBKR",
         dur: "11:40",
-        theory: `
-          <h3>Transcripción y Guía de la Clase (11:40 min)</h3>
-          <p>Implementación de órdenes Bracket, Market y Limit con Stop Loss y Take Profit automáticos.</p>
-        `,
-        code: `from quant_trading.execution import MockBrokerAPI
-ib = MockBrokerAPI(100000.0)
-ib.connect()
-res = ib.place_order("AAPL", "BUY", 100, 270.0)
-print("Orden Bracket Ejecutada en IBKR:", res)`
+        theory: `<h3>Enrutamiento de Órdenes (11:40 min)</h3><p>Implementación de órdenes Bracket, Market y Limit con Stop Loss y Take Profit automáticos.</p>`,
+        code: `from quant_trading.execution import MockBrokerAPI\nib = MockBrokerAPI(100000.0)\nib.connect()\nres = ib.place_order("AAPL", "BUY", 100, 270.0)\nprint("Orden Ejecutada en IBKR:", res)`
       }
     ]
   },
@@ -456,56 +359,29 @@ print("Orden Bracket Ejecutada en IBKR:", res)`
         id: 28,
         title: "Tasa Compuesta de Crecimiento Anual (CAGR)",
         dur: "09:55",
-        theory: `
-          <h3>Transcripción y Guía de la Clase (09:55 min)</h3>
-          <p>Cálculo en código de la tasa anualizada compuesta de crecimiento (CAGR).</p>
-        `,
-        code: `from quant_trading.backtesting import PerformanceMetrics
-import pandas as pd
-eq = pd.Series([100000, 110000, 125000, 140000])
-cagr = PerformanceMetrics.calculate_cagr(eq)
-print(f"CAGR Calculado: {cagr * 100:.2f}%")`
+        theory: `<h3>CAGR (09:55 min)</h3><p>Cálculo en código de la Tasa Compuesta de Crecimiento Anual (CAGR).</p>`,
+        code: `from quant_trading.backtesting import PerformanceMetrics\nimport pandas as pd\neq = pd.Series([100000, 110000, 125000, 140000])\ncagr = PerformanceMetrics.calculate_cagr(eq)\nprint(f"CAGR Calculado: {cagr * 100:.2f}%")`
       },
       {
         id: 29,
         title: "Coeficiente Sharpe y Coeficiente Sortino",
         dur: "09:48",
-        theory: `
-          <h3>Transcripción y Guía de la Clase (09:48 min)</h3>
-          <p>Cálculo de los coeficientes de Sharpe (riesgo total) y Sortino (riesgo bajista).</p>
-        `,
-        code: `from quant_trading.backtesting import PerformanceMetrics
-import pandas as pd, numpy as np
-rets = pd.Series(np.random.normal(0.001, 0.015, 252))
-sharpe = PerformanceMetrics.calculate_sharpe_ratio(rets)
-sortino = PerformanceMetrics.calculate_sortino_ratio(rets)
-print(f"Sharpe: {sharpe:.2f} | Sortino: {sortino:.2f}")`
+        theory: `<h3>Sharpe y Sortino (09:48 min)</h3><p>Cálculo del rendimiento ajustado por volatilidad total (Sharpe) y por volatilidad bajista (Sortino).</p>`,
+        code: `from quant_trading.backtesting import PerformanceMetrics\nimport pandas as pd, numpy as np\nrets = pd.Series(np.random.normal(0.001, 0.015, 252))\nsharpe = PerformanceMetrics.calculate_sharpe_ratio(rets)\nsortino = PerformanceMetrics.calculate_sortino_ratio(rets)\nprint(f"Sharpe: {sharpe:.2f} | Sortino: {sortino:.2f}")`
       },
       {
         id: 30,
         title: "Máxima Pérdida de Inversión (Maximum-Drawdown)",
         dur: "07:55",
-        theory: `
-          <h3>Transcripción y Guía de la Clase (07:55 min)</h3>
-          <p>Identificación del Maximum Drawdown (MDD) y tiempo de recuperación de la equidad.</p>
-        `,
-        code: `from quant_trading.backtesting import PerformanceMetrics
-import pandas as pd
-eq = pd.Series([100, 120, 95, 110, 130])
-mdd = PerformanceMetrics.calculate_max_drawdown(eq)
-print(f"Max Drawdown %: {mdd['max_drawdown_pct']:.2f}%")`
+        theory: `<h3>Maximum Drawdown (07:55 min)</h3><p>Medición de la mayor caída porcentual de pico a valle en la curva de capital.</p>`,
+        code: `from quant_trading.backtesting import PerformanceMetrics\nimport pandas as pd\neq = pd.Series([100, 120, 95, 110, 130])\nmdd = PerformanceMetrics.calculate_max_drawdown(eq)\nprint(f"Max Drawdown %: {mdd['max_drawdown_pct']:.2f}%")`
       },
       {
         id: 31,
         title: "Motor de Backtesting con Comisiones y Slippage",
         dur: "13:21",
-        theory: `
-          <h3>Transcripción y Guía de la Clase (13:21 min)</h3>
-          <p>Simulación realista de la estrategia incluyendo comisiones de broker (0.1%) y deslizamiento de precio (*slippage* 0.05%).</p>
-        `,
-        code: `from quant_trading.backtesting import BacktestEngine
-engine = BacktestEngine(100000.0, 0.001, 0.0005)
-print(f"Engine de Backtesting Configurado con {engine.commission_pct*100}% Comisión")`
+        theory: `<h3>Backtesting Realista (13:21 min)</h3><p>Simulación realista incluyendo 0.1% de comisiones y 0.05% de deslizamiento (*slippage*).</p>`,
+        code: `from quant_trading.backtesting import BacktestEngine\nengine = BacktestEngine(100000.0, 0.001, 0.0005)\nprint(f"Engine de Backtesting Configurado con {engine.commission_pct*100}% Comisión")`
       }
     ]
   },
@@ -517,37 +393,22 @@ print(f"Engine de Backtesting Configurado con {engine.commission_pct*100}% Comis
         id: 32,
         title: "ML No Supervisado: Regímenes de Mercado (HMM)",
         dur: "04:14",
-        theory: `
-          <h3>Transcripción y Guía de la Clase (04:14 min)</h3>
-          <p>Detección no supervisada de regímenes de mercado (Gaussian Mixture HMM) para clasificar estados de baja vs alta volatilidad.</p>
-        `,
-        code: `from quant_trading.models import MarketRegimeHMM
-hmm = MarketRegimeHMM(n_regimes=2)
-print("Modelo de Regímenes Ocultos HMM Inicializado.")`
+        theory: `<h3>Modelos HMM (04:14 min)</h3><p>Clasificación no supervisada de regímenes de volatilidad (Alcista vs Crisis/Crash).</p>`,
+        code: `from quant_trading.models import MarketRegimeHMM\nhmm = MarketRegimeHMM(n_regimes=2)\nprint("Modelo de Regímenes Ocultos HMM Inicializado.")`
       },
       {
         id: 33,
-        title: "ML Supervisado: Predicción con Random Forest",
+        title: "ML Supervisado: Random Forest Classifier",
         dur: "18:38",
-        theory: `
-          <h3>Transcripción y Guía de la Clase (18:38 min)</h3>
-          <p>Entrenamiento del clasificador Random Forest sobre indicadores técnicos para predecir la dirección del precio con evaluación Out-of-Sample.</p>
-        `,
-        code: `from quant_trading.models import SupervisedTrendPredictor
-rf = SupervisedTrendPredictor(n_estimators=100)
-print("Random Forest Classifier Configurado.")`
+        theory: `<h3>Random Forest (18:38 min)</h3><p>Predicción out-of-sample de la dirección del precio con ensemble de árboles de decisión.</p>`,
+        code: `from quant_trading.models import SupervisedTrendPredictor\nrf = SupervisedTrendPredictor(n_estimators=100)\nprint("Random Forest Classifier Configurado.")`
       },
       {
         id: 34,
         title: "Deep Learning: Red Neuronal Multicapa (MLP)",
         dur: "35:16",
-        theory: `
-          <h3>Transcripción y Guía de la Clase (35:16 min)</h3>
-          <p>Construcción e integración de una Red Neuronal de 64x32 neuronas en Python para captura de patrones no lineales en series de precio.</p>
-        `,
-        code: `from quant_trading.models import NeuralNetworkPredictor
-nn = NeuralNetworkPredictor((64, 32))
-print("Red Neuronal Deep Learning 64x32 Lista.")`
+        theory: `<h3>Red Neuronal MLP (35:16 min)</h3><p>Construcción de una Red Neuronal de 64x32 neuronas en Python para captura de patrones no lineales.</p>`,
+        code: `from quant_trading.models import NeuralNetworkPredictor\nnn = NeuralNetworkPredictor((64, 32))\nprint("Red Neuronal Deep Learning 64x32 Lista.")`
       }
     ]
   }
@@ -556,7 +417,7 @@ print("Red Neuronal Deep Learning 64x32 Lista.")`
 // App State
 let currentSectionIdx = 0;
 let currentLessonIdx = 0;
-let completedLessons = new Set([1]);
+let completedLessons = new Set([0]);
 let backtestChart = null;
 
 // DOM Elements
@@ -601,7 +462,8 @@ function renderSyllabus(filterText = '') {
     if (filterText && filteredLessons.length === 0) return;
 
     const sectionCard = document.createElement('div');
-    sectionCard.className = `section-card ${secIdx === currentSectionIdx ? 'open active' : ''}`;
+    const isSecOpen = secIdx === currentSectionIdx || filterText.length > 0;
+    sectionCard.className = `section-card ${isSecOpen ? 'open active' : ''}`;
     
     let totalDurMin = section.lessons.reduce((acc, l) => {
       let parts = l.dur.split(':');
@@ -662,7 +524,7 @@ function loadLesson(secIdx, lesIdx) {
   lessonBreadcrumbs.textContent = `Sección ${section.id}: ${section.title} • Clase ${lesIdx + 1}`;
   currentLessonTitle.textContent = lesson.title;
   currentLessonDur.textContent = lesson.dur;
-  theoryHeading.textContent = `Lección Magistral: ${lesson.title} (${lesson.dur} min)`;
+  theoryHeading.textContent = `Lección Magistral: ${lesson.title}`;
   theoryContent.innerHTML = lesson.theory;
   codeEditor.value = lesson.code || "# Código de la clase\nprint('Ejecutando algoritmo quant...')";
   terminalOutput.textContent = `// Listo para ejecutar ${lesson.title} en Python 3.10...\nPresiona 'Ejecutar Código Python' para compilar el algoritmo.`;
