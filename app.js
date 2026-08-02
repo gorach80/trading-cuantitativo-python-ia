@@ -29,19 +29,29 @@ const COURSE_DATA = [
             <li><b>Bloque 6: Sistema Unificado & Despliegue en Vivo:</b> Orquestación del pipeline completo en <code>main.py</code>, gestión de riesgos, cuentas de fondeo, certificaciones financieras (CFA, FRM, CQF, CMT) y fiscalidad.</li>
           </ul>
         `,
-        code: `# Módulos Integrados del Curso Quant
+        code: `# clase_01_estructura.py - Código Completo de la Clase 1
+import sys
+import os
 import quant_trading
-from quant_trading.core import BaseStrategy, ParallelExecutor
-from quant_trading.backtesting import PerformanceMetrics
-from quant_trading.indicators import TechnicalIndicators
-from quant_trading.analysis import FundamentalAnalysis, SentimentAnalyzer
-from quant_trading.models import MarketRegimeHMM, SupervisedTrendPredictor, NeuralNetworkPredictor
 
-print("====================================================")
-print("  SISTEMA DE TRADING CUANTITATIVO, INGENIERÍA E IA  ")
-print("====================================================")
-print(f"Versión de la Librería: {quant_trading.__version__}")
-print("Módulos Core, Data, Backtesting, Indicators, Analysis, Models y Execution Listos.")`
+def ejecutar_clase_01():
+    print("=====================================================================")
+    print("  CLASE 1: VERIFICACIÓN DEL SISTEMA DE TRADING CUANTITATIVO E IA    ")
+    print("=====================================================================")
+    print(f" Versión de la Librería Quant: {quant_trading.__version__}")
+    print(f" Intérprete Python: {sys.version.split()[0]} ({sys.platform})")
+    print(" Módulos Core Instanciados:")
+    print("   - Core: BaseStrategy, ParallelExecutor, TaskSynchronizer")
+    print("   - Data: YahooDataFetcher, BinanceDataFetcher")
+    print("   - Backtesting: PerformanceMetrics, BacktestEngine")
+    print("   - Indicators: TechnicalIndicators (+100 Indicadores)")
+    print("   - Analysis: FundamentalAnalysis (DCF), SentimentAnalyzer (VADER)")
+    print("   - Models: MarketRegimeHMM, SupervisedTrendPredictor, NeuralNetworkPredictor")
+    print("   - Execution: MockBrokerAPI, QuantTradingEngine")
+    print("=====================================================================")
+
+if __name__ == "__main__":
+    ejecutar_clase_01()`
       },
       { 
         id: 2, 
