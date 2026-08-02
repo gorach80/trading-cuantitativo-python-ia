@@ -561,6 +561,35 @@ body {
   color: #e2e8f0;
 }
 
+/* Embedded Code Preview Box in Theory Tab */
+.code-preview-box {
+  background: #0d1117;
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-top: 1.5rem;
+  font-family: var(--font-mono);
+}
+
+.code-preview-box h4 {
+  color: var(--accent-cyan);
+  font-size: 0.88rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-heading);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.code-preview-box pre {
+  margin: 0;
+  color: #e6edf3;
+  font-size: 0.83rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
 /* IDE & Terminal Grid */
 .ide-container {
   display: grid;

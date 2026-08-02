@@ -1002,6 +1002,10 @@ function selectLesson(secIdx, lesIdx) {
   loadLesson(secIdx, lesIdx);
 }
 
+function escapeHtml(str) {
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
 function loadLesson(secIdx, lesIdx) {
   const section = COURSE_DATA[secIdx];
   if (!section) return;
@@ -1012,8 +1016,19 @@ function loadLesson(secIdx, lesIdx) {
   if (currentLessonTitle) currentLessonTitle.textContent = lesson.title;
   if (currentLessonDur) currentLessonDur.textContent = lesson.dur;
   if (theoryHeading) theoryHeading.textContent = `Lección Magistral: ${lesson.title}`;
-  if (theoryContent) theoryContent.innerHTML = lesson.theory;
-  if (codeEditor) codeEditor.value = lesson.code || "# Código de la clase\nprint('Ejecutando algoritmo quant...')";
+  
+  const codeSnippet = lesson.code || "# Código de la clase\nprint('Ejecutando algoritmo quant...')";
+
+  if (theoryContent) {
+    theoryContent.innerHTML = lesson.theory + `
+      <div class="code-preview-box">
+        <h4>💻 Código Python de la Clase:</h4>
+        <pre><code>${escapeHtml(codeSnippet)}</code></pre>
+      </div>
+    `;
+  }
+  
+  if (codeEditor) codeEditor.value = codeSnippet;
   if (terminalOutput) terminalOutput.textContent = `// Listo para ejecutar ${lesson.title} en Python 3.10...\nPresiona 'Ejecutar Código Python' para compilar el algoritmo.`;
 }
 
