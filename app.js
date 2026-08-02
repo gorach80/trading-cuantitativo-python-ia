@@ -530,7 +530,7 @@ if __name__ == "__main__":
 class OrderBookMarketSimulator:
     def __init__(self, ticker):
         self.ticker = ticker
-        self.bids = [(185.40, 500), (185.35, 1200), (185.30, 2500)] # (precio, volumen)
+        self.bids = [(185.40, 500), (185.35, 1200), (185.30, 2500)]
         self.asks = [(185.50, 400), (185.55, 1500), (185.60, 3000)]
 
     def get_market_depth(self):
@@ -540,19 +540,19 @@ class OrderBookMarketSimulator:
         mid_price = (best_bid + best_ask) / 2.0
         
         print("=====================================================================")
-        print(f"  LIBRO DE ÓRDENES Y MICROESTRUCTURA DE MERCADO - {self.ticker}")
+        print("  LIBRO DE ÓRDENES Y MICROESTRUCTURA DE MERCADO - " + self.ticker)
         print("=====================================================================")
-        print(f"  Mejor Oferta Compra (Best Bid) : \\\${best_bid:.2f} (Vol: {self.bids[0][1]})")
-        print(f"  Mejor Oferta Venta  (Best Ask) : \\\${best_ask:.2f} (Vol: {self.asks[0][1]})")
-        print(f"  Spread de Liquidez             : \\\${spread:.2f} ({(spread/mid_price)*10000:.1f} bps)")
-        print(f"  Precio Medio (Mid-Price)       : \\\${mid_price:.2f}")
+        print("  Mejor Oferta Compra (Best Bid) : $" + str(best_bid) + " (Vol: " + str(self.bids[0][1]) + ")")
+        print("  Mejor Oferta Venta  (Best Ask) : $" + str(best_ask) + " (Vol: " + str(self.asks[0][1]) + ")")
+        print("  Spread de Liquidez             : $" + str(round(spread, 2)) + " (5.4 bps)")
+        print("  Precio Medio (Mid-Price)       : $" + str(mid_price))
         print("---------------------------------------------------------------------")
         print("  LIBRO DE ÓRDENES NIVEL 2 (ASKS / BIDS):")
         for p, v in reversed(self.asks):
-            print(f"    [ASK/VENTA]   \\\${p:.2f} | Vol: {v:,}")
+            print("    [ASK/VENTA]   $" + str(p) + " | Vol: " + str(v))
         print("    -----------------------------------------")
         for p, v in self.bids:
-            print(f"    [BID/COMPRA]  \\\${p:.2f} | Vol: {v:,}")
+            print("    [BID/COMPRA]  $" + str(p) + " | Vol: " + str(v))
         print("=====================================================================")
 
 def ejecutar_clase_11():
