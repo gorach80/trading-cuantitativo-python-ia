@@ -353,11 +353,57 @@ if __name__ == "__main__":
         dur: "04:19",
         theory: `
           <h3>Transcripción Magistral y Desarrollo Teórico Completo (04:19 min)</h3>
-          <p>Desglose del proceso cuantitativo de 5 etapas: 1. Hipótesis -> 2. ETL -> 3. Modelo en Python -> 4. Backtesting Realista -> 5. API Broker.</p>
+          <p>En esta lección de 4 minutos y 19 segundos analizamos la arquitectura del <b>Flujo de Trabajo Cuantitativo (Quant Workflow)</b> de 5 etapas estandarizadas que gobierna todo el desarrollo de este curso.</p>
+
+          <div class="theory-callout">
+            <b>🎯 Las 5 Etapas del Pipeline Cuantitativo:</b><br>
+            A diferencia de la operativa intuitiva, cada bot en Python sigue una secuencia rigurosa de ciclo de vida:<br>
+            1. <i>Formulación de Hipótesis:</i> Definición del principio financiero o ventaja estadística (*edge*).<br>
+            2. <i>Adquisición de Datos (ETL):</i> Muestreo de barras de tiempo, volumen o dólares.<br>
+            3. <i>Modelo Algorítmico en Python:</i> Desarrollo modular orientado a objetos (POO).<br>
+            4. <i>Backtesting Realista:</i> Simulación con costos de transacción (comisiones y slippage).<br>
+            5. <i>Despliegue automatizado en Broker API:</i> Enrutamiento directo a mercado.
+          </div>
+
+          <h3>Estructura Interna del Pipeline Quant:</h3>
+          <ul>
+            <li><b>Fase ETL:</b> Limpieza de datos, ajuste por splits/dividendos e inserción de variables técnias.</li>
+            <li><b>Fase de Simulación Out-of-Sample:</b> Garantiza que la estrategia no sufra de *overfitting* (sobreajuste).</li>
+            <li><b>Fase de Enrutamiento:</b> Validación de órdenes antes de su transmisión a la API del broker.</li>
+          </ul>
         `,
-        code: `workflow = ["1. Hipótesis", "2. ETL Datos", "3. Modelo Python", "4. Backtesting Realista", "5. Despliegue API"]
-for step in workflow:
-    print(step)`
+        code: `# clase_08_flujo_trabajo.py - Código Completo de la Clase 8
+import time
+
+class QuantWorkflowPipeline:
+    def __init__(self, strategy_name):
+        self.strategy_name = strategy_name
+        self.stages = [
+            "1. Formulación de Hipótesis & Edge Estadístico",
+            "2. Adquisición y Limpieza de Datos (ETL)",
+            "3. Desarrollo del Modelo Algorítmico en Python",
+            "4. Backtesting Realista (Comisiones 0.1% + Slippage 0.05%)",
+            "5. Despliegue Automatizado en Broker API"
+        ]
+
+    def run_pipeline(self):
+        print("=====================================================================")
+        print(f"  EJECUCIÓN DEL PIPELINE QUANT: {self.strategy_name.upper()}")
+        print("=====================================================================")
+        for idx, stage in enumerate(self.stages, 1):
+            print(f"  [PROCESANDO] Etapa {idx}: {stage}...")
+            time.sleep(0.1)
+            print(f"  [✓ COMPLETADO] Etapa {idx} verificada exitosamente.\n")
+        print("=====================================================================")
+        print("  ESTADO GLOBAL: Pipeline Quant 100% Funcional y Listo para Producción")
+        print("=====================================================================")
+
+def ejecutar_clase_08():
+    pipeline = QuantWorkflowPipeline("SuperTrend_HMM_Hybrid")
+    pipeline.run_pipeline()
+
+if __name__ == "__main__":
+    ejecutar_clase_08()`
       },
       {
         id: 9,
