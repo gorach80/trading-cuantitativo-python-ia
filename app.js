@@ -228,44 +228,82 @@ if __name__ == "__main__":
         title: "Evaluaciones Tempranas",
         dur: "01:29",
         theory: `
-          <h3>Transcripción Magistral y Desarrollo Teórico Completo (01:29 min)</h3>
-          <p>Propósito pedagógico de las Evaluaciones Tempranas y Diagnósticas para medir el nivel de entrada en finanzas, estadística, programación y lógica algorítmica.</p>
+          <h3>📖 Transcripción Magistral y Fundamentos Financieros (Trading para Principiantes)</h3>
+          <p>En esta lección de 1 minuto y 29 segundos establecemos el propósito de las <b>Evaluaciones Tempranas y Diagnósticas</b> para medir el nivel de entrada del estudiante en cuatro pilares fundamentales.</p>
+
           <div class="theory-callout">
-            <b>Rúbrica Diagnóstica:</b><br>
-            - 0-40%: Iniciar por el Apéndice de Python (Sección 29).<br>
-            - 41-75%: Seguir secuencia normal del curso.<br>
-            - 76-100%: Enfoque prioritario en Cómputo Paralelo, ML y Broker APIs.
+            <b>🎯 Rúbrica de Diagnóstico Inicial & Rutas Personalizadas:</b><br>
+            - <b>Puntuación 0% a 40%:</b> Iniciar por el Apéndice Intensivo de Python desde Cero (Sección 29) antes de avanzar a la programación orientada a objetos.<br>
+            - <b>Puntuación 41% a 75%:</b> Seguir la secuencia estándar recomendada del curso (Secciones 1 a 28).<br>
+            - <b>Puntuación 76% a 100%:</b> Enfoque de aprendizaje prioritario en Cómputo Paralelo, Machine Learning y APIs de Brokerage.
+          </div>
+
+          <h3>🏛️ Los 4 Pilares Evaluados en la Prueba Inicial:</h3>
+          <ul>
+            <li><b>Finanzas & Mercados:</b> Comprensión de activos, bolsa de valores, oferta y demanda.</li>
+            <li><b>Estadística & Múltiplos:</b> Medias, desviación estándar, porcentajes y varianza.</li>
+            <li><b>Lógica Algorítmica:</b> Diagramación de flujos de decisión y condicionales.</li>
+            <li><b>Programación Python:</b> Manejo de variables, listas, diccionarios y funciones.</li>
+          </ul>
+
+          <h3>🐍 Teoría y Sintaxis de Programación en Python desde Cero:</h3>
+          <p>En esta lección utilizaremos una de las estructuras de datos más potentes de Python: los <b>Diccionarios</b>.</p>
+
+          <div class="theory-callout">
+            <b>🔍 Desglose de Sintaxis Python para Principiantes:</b><br>
+            - <code>self.scores = {}</code>: Un <b>Diccionario</b> es una estructura de datos delimitada por llaves <code>{}</code> que almacena parejas de <b>Clave : Valor</b> (como un diccionario de palabras y definiciones).<br>
+            - <code>self.scores[category] = score</code>: Asigna o actualiza el valor de una clave específica dentro del diccionario.<br>
+            - <code>self.scores.items()</code>: Método que extrae simultáneamente la pareja (clave, valor) para poder recorrerla en un bucle <code>for cat, score in self.scores.items():</code>.<br>
+            - <code>"█" * int(score // 10)</code>: En Python, multiplicar un texto por un entero repite la cadena ese número de veces. El operador <code>//</code> realiza una <b>División Entera</b> (descartando decimales).<br>
+            - <code>{score:.1f}%</code>: Formatea un número flotante para mostrar exactamente 1 decimal.
           </div>
         `,
-        code: `# clase_04_evaluaciones.py - Código Completo de la Clase 4
+        code: `# clase_04_evaluaciones.py - Código Completo y Comentado para Principiantes
 class DiagnosticAssessment:
+    """
+    Clase que implementa un evaluador diagnóstico de entrada para estudiantes.
+    Demuestra el uso de Diccionarios, bucles .items() y formateo visual en Python.
+    """
     def __init__(self, student_name):
         self.student_name = student_name
-        self.scores = {}
+        self.scores = {} # Inicialización de un diccionario vacío
 
     def record_score(self, category, score_pct):
+        # Asigna un puntaje validando que esté entre 0.0 y 100.0%
         self.scores[category] = min(max(score_pct, 0.0), 100.0)
 
     def evaluate_readiness(self):
+        # Calcula el promedio simple del estudiante
         total_score = sum(self.scores.values()) / len(self.scores) if self.scores else 0.0
+        
         print("=====================================================================")
         print(f"  DIAGNÓSTICO INICIAL DE ENTRADA - ESTUDIANTE: {self.student_name.upper()}")
         print("=====================================================================")
+        
+        # Recorrer clave (cat) y valor (score) en el diccionario
         for cat, score in self.scores.items():
-            bar = "█" * int(score // 10) + "░" * (10 - int(score // 10))
+            # Crear una barra visual de progreso multiplicando caracteres
+            barras_llenas = int(score // 10)
+            barras_vacias = 10 - barras_llenas
+            bar = "█" * barras_llenas + "░" * barras_vacias
             print(f"  - {cat.ljust(25)} : [{bar}] {score:.1f}%")
+            
         print("---------------------------------------------------------------------")
         print(f"  PUNTUACIÓN GLOBAL DE ENTRADA : {total_score:.1f}% / 100%")
         print("=====================================================================")
 
 def ejecutar_clase_04():
+    # Crear la instancia de evaluación para el estudiante
     evaluacion = DiagnosticAssessment("Estudiante Quant")
     evaluacion.record_score("Finanzas & Mercados", 85.0)
     evaluacion.record_score("Estadística & Múltiplos", 90.0)
     evaluacion.record_score("Lógica Algorítmica", 80.0)
     evaluacion.record_score("Programación Python", 95.0)
+    
+    # Ejecutar la evaluación e imprimir la barra de progreso
     evaluacion.evaluate_readiness()
 
+# Punto de entrada principal
 if __name__ == "__main__":
     ejecutar_clase_04()`
       },
