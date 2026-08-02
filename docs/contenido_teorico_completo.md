@@ -1,172 +1,101 @@
 # Manual Teórico Completo: Trading Cuantitativo en Python, Ingeniería Financiera e IA
 
 **Autor / Instructor:** Axel Francisco Munguía Quintero  
-*Ingeniero Financiero • Máster en Inteligencia Artificial Aplicada • Quant Developer*
+*Ingeniero Financiero • Máster en Inteligencia Artificial Aplicada • Quant Developer*  
+**Programa Completo:** 29 Secciones • 193 Clases • 25 horas 15 minutos
 
 ---
 
-## 📚 MÓDULO I: Fundamentos de Trading Cuantitativo y Python para Finanzas
+## 🗺️ ÍNDICE GENERAL DE SECCIONES (29 SECCIONES)
 
-### 1.1 Trading Cuantitativo vs. Trading Tradicional / Discrecional
-El trading cuantitativo consiste en el diseño, validación y ejecución de estrategias de inversión utilizando modelos matemáticos, análisis estadístico rigoroso y código automatizado. 
-
-| Dimensión | Trading Discrecional | Trading Cuantitativo |
-| :--- | :--- | :--- |
-| **Toma de Decisiones** | Subjetiva, basada en intuición, lectura visual de gráficos y emociones. | Objetiva, basada en algoritmos probados con datos históricos. |
-| **Sesgo Emocional** | Alto (Miedo a perder, avaricia, aversión a la pérdida, FOMO). | Nulo (El código ejecuta reglas matemáticas rígidas). |
-| **Validación** | Suposiciones no probadas empíricamente. | Backtesting histórico riguroso con comisiones y slippage. |
-| **Velocidad y Escala** | Limitada a la capacidad humana de monitoreo. | Monitoreo simultáneo de cientos de activos en milisegundos. |
-
-### 1.2 Formulación Matemática de Precios y Retornos
-Para analizar estadísticamente las series temporales de activos financieros, convertimos los precios de cierre \(P_t\) en retornos:
-
-1. **Retorno Simple:**
-   \[
-   R_t = \frac{P_t - P_{t-1}}{P_{t-1}}
-   \]
-2. **Retorno Logarítmico (Continuo):**
-   \[
-   r_t = \ln\left(\frac{P_t}{P_{t-1}}\right) = \ln(P_t) - \ln(P_{t-1})
-   \]
-   *Ventaja del Retorno Logarítmico:* Es aditivo a través del tiempo, permitiendo sumar los retornos diarios para obtener el retorno acumulado mensual o anual.
-
-### 1.3 Programación Orientada a Objetos (POO) para Quants
-La arquitectura modular en Python requiere el uso de clases abstractas base (`ABC`) para definir el contrato de interacción entre estrategias, motores de descarga de datos y adaptadores de brokers:
-
-```python
-from abc import ABC, abstractmethod
-import pandas as pd
-
-class BaseStrategy(ABC):
-    def __init__(self, name: str, params: dict = None):
-        self.name = name
-        self.params = params or {}
-
-    @abstractmethod
-    def generate_signals(self, data: pd.DataFrame) -> pd.DataFrame:
-        """Entrada: OHLCV DataFrame. Salida: DataFrame con columna 'Signal' (-1, 0, 1)."""
-        pass
-```
-
-### 1.4 Cómputo Concurrente y Paralelo
-- **Multithreading (`threading` / `ThreadPoolExecutor`):** Utilizado para tareas de entrada y salida (I/O Bound) como consultar APIs de brokers o realizar Web Scraping.
-- **Multiprocessing (`multiprocessing` / `ProcessPoolExecutor`):** Utilizado para tareas intensivas de procesamiento (CPU Bound) en núcleos independientes, multiplicando la velocidad en optimizaciones de parámetros (Grid Search) y modelos de Machine Learning.
-- **Sincronizadores (`Lock`):** Cerramientos de seguridad que evitan la sobreescritura simultánea de variables globales (como el saldo disponible en la cuenta) cuando múltiples hilos se ejecutan simultáneamente.
+- [Sección 1: Introducción y Flujo de Trabajo](#sección-1-introducción-y-flujo-de-trabajo)
+- [Sección 2: Flujo de Trabajo y Conceptos Clave en Inversiones](#sección-2-flujo-de-trabajo-y-conceptos-clave-en-inversiones)
+- [Sección 3: Programación Orientada a Objetos y Cómputo Paralelo](#sección-3-programación-orientada-a-objetos-y-cómputo-paralelo)
+- [Sección 4: Conexiones Broker APIs: OANDA, FXCM e IBKR](#sección-4-conexiones-broker-apis-oanda-fxcm-e-ibkr)
+- [Sección 5: Métricas KPI y Motor de Backtesting Realista](#sección-5-métricas-kpi-y-motor-de-backtesting-realista)
+- [Sección 6: IA, Machine Learning e IA Profunda](#sección-6-ia-machine-learning-e-ia-profunda)
+- [Sección 7: Análisis Técnico Avanzado e Indicadores (+100)](#sección-7-análisis-técnico-avanzado-e-indicadores-100)
+- [Sección 8: Análisis Fundamental y Valoración DCF / Fórmula Mágica](#sección-8-análisis-fundamental-y-valoración-dcf--fórmula-mágica)
+- [Sección 9: Procesamiento de Lenguaje Natural (NLP) y VADER Sentiment](#sección-9-procesamiento-de-lenguaje-natural-nlp-y-vader-sentiment)
+- [Sección 10: Modelos de Márkov Ocultos (HMM) para Regímenes de Mercado](#sección-10-modelos-de-márkov-ocultos-hmm-para-regímenes-de-mercado)
+- [Sección 11: Random Forest y XGBoost en Series Temporales](#sección-11-random-forest-y-xgboost-en-series-temporales)
+- [Sección 12: Redes Neuronales Profundas (PyTorch / MLP)](#sección-12-redes-neuronales-profundas-pytorch--mlp)
+- [Sección 13: Sistema de Trading Unificado de Producción](#sección-13-sistema-de-trading-unificado-de-producción)
+- [Sección 14: Criterio de Kelly, VaR y Gestión de Riesgo](#sección-14-criterio-de-kelly-var-y-gestión-de-riesgo)
+- [Sección 15: Estrategias Intradía y Swing Trading](#sección-15-estrategias-intradía-y-swing-trading)
+- [Sección 16: Trading en Criptoactivos con Binance API](#sección-16-trading-en-criptoactivos-con-binance-api)
+- [Sección 17: Operativa Forex en OANDA REST v20](#sección-17-operativa-forex-en-oanda-rest-v20)
+- [Sección 18: Operativa en Acciones del S&P 500](#sección-18-operativa-en-acciones-del-sp-500)
+- [Sección 19: Estrategias de Arbitraje Estadístico y Pares](#sección-19-estrategias-de-arbitraje-estadístico-y-pares)
+- [Sección 20: Estrategias de Regresión a la Media (Mean Reversion)](#sección-20-estrategias-de-regresión-a-la-media-mean-reversion)
+- [Sección 21: Estrategias Momentum y Breakout](#sección-21-estrategias-momentum-y-breakout)
+- [Sección 22: Optimización de Portafolios Markowitz & Black-Litterman](#sección-22-optimización-de-portafolios-markowitz--black-litterman)
+- [Sección 23: Detección de Anomalías y Filtros Kalman](#sección-23-detección-de-anomalías-y-filtros-kalman)
+- [Sección 24: Microestructura de Mercado y Libros de Órdenes (L2/L3)](#sección-24-microestructura-de-mercado-y-libros-de-órdenes-l2l3)
+- [Sección 25: Web Scraping Financiero e Integración de Noticias](#sección-25-web-scraping-financiero-e-integración-de-noticias)
+- [Sección 26: Cuentas de Fondeo (Prop Trading) y Reglas de Evaluación](#sección-26-cuentas-de-fondeo-prop-trading-y-reglas-de-evaluación)
+- [Sección 27: Certificaciones Financieras (CFA, FRM, CQF, CMT)](#sección-27-certificaciones-financieras-cfa-frm-cqf-cmt)
+- [Sección 28: Aspectos Fiscales, Impuestos y Formulario W-8BEN](#sección-28-aspectos-fiscales-impuestos-y-formulario-w-8ben)
+- [Sección 29: Apéndice: Curso Intensivo de Python desde Cero](#sección-29-apéndice-curso-intensivo-de-python-desde-cero)
 
 ---
 
-## 🏛️ MÓDULO II: Mercados Financieros, Instrumentos y Broker APIs
+## 📚 DESARROLLO MAGISTRAL DE CLASES
 
-### 2.1 Estructura de Mercados e Instrumentos
-1. **Acciones (Equities):** Títulos representativos del capital social de una empresa.
-2. **Forex (Foreign Exchange):** Mercado descentralizado de cotización de pares de divisas operando 24 horas al día.
-3. **Futuros y Opciones (Derivados):** Contratos estandarizados con apalancamiento donde el comprador y vendedor acuerdan intercambiar un activo subyacente a un precio fijado en una fecha futura.
-4. **CFDs (Contratos por Diferencia) vs. DMA (Direct Market Access):** 
-   - *CFD:* Contrato entre el trader y el broker que replica el precio sin poseer el activo subyacente.
-   - *DMA:* Enrutamiento directo al libro de órdenes centralizado de la bolsa de valores real.
+### Sección 1: Introducción y Flujo de Trabajo
+- **Clase 1 (10:56 min) - Estructura del Curso:** Explicación del mapa de ruta de 29 secciones. Transición de trading discrecional a cuantitativo.
+- **Clase 2 (01:39 min) - Requisitos Elementales:** Entorno Anaconda, Python 3.10 y librerías científicas.
+- **Clase 3 (01:43 min) - Conoce a tu Instructor:** Trayectoria de Axel Francisco Munguía Quintero (Ing. Financiero, MSc AI).
+- **Clase 4 (01:29 min) - Evaluaciones Tempranas:** Diagnóstico formativo de finanzas y lógica.
+- **Clase 5 (02:40 min) - Herramientas y Recursos:** Estructura de carpetas `quant_trading/` y descargas de código.
+- **Clase 6 (02:09 min) - FAQ:** Solución de incidencias con `yfinance`, `scikit-learn` y virtualenvs.
+- **Clase 7 (01:02 min) - Aviso Legal:** Descargo de responsabilidad académica e investigación.
 
-### 2.2 Gestión de Órdenes
-- **Market Order (Orden a Mercado):** Garantiza la ejecución inmediata pero no el precio final exacto.
-- **Limit Order (Orden Límite):** Garantiza el precio máximo de compra o mínimo de venta, pero no asegura la ejecución si el precio no alcanza el límite.
-- **Stop Loss / Take Profit:** Órdenes automáticas de protección para cortar pérdidas o asegurar ganancias acumuladas.
+### Sección 2: Flujo de Trabajo y Conceptos Clave en Inversiones
+- **Clase 8 (04:19 min) - Descripción del Flujo de Trabajo:** Las 5 etapas: Hipótesis -> ETL -> Modelo -> Backtesting -> API.
+- **Clase 9 (01:28 min) - Herramientas y Tecnologías:** Python, Pandas, NumPy, Scikit-Learn, PyTorch e IBAPI.
+- **Clase 10 (01:33 min) - Recomendaciones Generales:** Prevención del sobreajuste (*overfitting*) y validación Out-of-Sample.
+- **Clase 11 (05:06 min) - Mercados Financieros:** Oferta, demanda, liquidez, creadores de mercado (*Market Makers*) y libros de órdenes.
+- **Clase 12 (05:12 min) - Instrumentos Financieros:** Acciones, Forex, Futuros, Opciones y CFDs vs DMA.
+- **Clase 13 (05:16 min) - Tipos de Análisis:** Fundamental, Técnico y Cuantitativo.
+- **Clase 14 (03:28 min) - Psicología del Trading:** Eliminación de sesgos emocionales mediante reglas rígidas en Python.
+- **Clase 15 (06:18 min) - Trading Algorítmico: Estructuras Automatizadas:** El bucle algorítmico de 4 etapas: Listening -> Signal Generation -> Risk Sizing -> Order Execution (<50ms latencia).
+- **Clase 16 (03:05 min) - Modelos Matemáticos:** Retornos logarítmicos continuos \(r_t = \ln(P_t) - \ln(P_{t-1})\).
 
-### 2.3 Integración con APIs de Brokers
-La comunicación entre Python y los brokers se realiza mediante protocolos REST (peticiones HTTP) y WebSockets (transmisión bidireccional en tiempo real):
-- **Interactive Brokers (IBAPI):** Acceso institucional multiactivo.
-- **OANDA API / FXCM REST API:** Operativa especializada en Forex y CFDs.
-- **Binance API / CCXT:** Operativa cuantitativa en Criptoactivos.
+### Sección 3: Programación Orientada a Objetos y Cómputo Paralelo
+- **Clase 17 (13:10 min) - Clases en Python:** POO, atributos, métodos e inicializadores `__init__`.
+- **Clase 18 (09:17 min) - Herencia Simple:** Clase base abstracta `BaseStrategy`.
+- **Clase 19 (06:48 min) - Herencia Múltiple y MRO:** Orden de resolución de métodos para combinar módulos.
+- **Clase 20 (04:10 min) - Cómputo Paralelo:** Multithreading (I/O) y Multiprocessing (CPU).
+- **Clase 21 (07:01 min) - Hilos (Threads):** `ThreadPoolExecutor` para peticiones concurrentes a APIs.
+- **Clase 22 (10:48 min) - Procesos (Multiprocessing):** Optimización de hiperparámetros en núcleos CPU independientes.
+- **Clase 23 (08:36 min) - Sincronizadores:** Prevención de condiciones de carrera con `TaskSynchronizer` y `Lock`.
+- **Clase 24 (01:48 min) - Benchmark de Velocidad:** Comparativa empírica Secuencial vs Threads vs Processes.
 
----
+### Sección 4: Conexiones Broker APIs: OANDA, FXCM e IBKR
+- **Clase 25 (05:10 min) - Interactive Brokers API:** Conexión TWS / IB Gateway para gestión multiactivo.
+- **Clase 26 (15:12 min) - Datos Históricos en IBKR:** Solicitud de barras históricas de 1m, 1h y 1d.
+- **Clase 27 (11:40 min) - Tipos de Órdenes en IBKR:** Órdenes Market, Limit y Bracket automáticas.
 
-## 📊 MÓDULO III: Indicadores Clave de Rendimiento (KPIs) y Análisis Técnico
+### Sección 5: Métricas KPI y Motor de Backtesting Realista
+- **Clase 28 (09:55 min) - CAGR:** Tasa Compuesta de Crecimiento Anualizada.
+- **Clase 29 (09:48 min) - Sharpe y Sortino:** Rendimiento ajustado por volatilidad total y volatilidad bajista.
+- **Clase 30 (07:55 min) - Maximum Drawdown:** Máxima caída de pico a valle en la equidad.
+- **Clase 31 (13:21 min) - Motor de Backtesting:** Simulación con 0.1% comisiones y 0.05% slippage.
 
-### 3.1 Indicadores Clave de Rendimiento (KPIs Financieros)
-Para determinar si un algoritmo es rentable y robusto, evaluamos las siguientes métricas:
+### Sección 6: IA, Machine Learning e IA Profunda
+- **Clase 32 (04:14 min) - ML No Supervisado HMM:** Regímenes de mercado (Alcista vs Crash).
+- **Clase 33 (18:38 min) - ML Supervisado Random Forest:** Predicción de tendencia out-of-sample.
+- **Clase 34 (35:16 min) - Deep Learning MLP:** Red Neuronal Multicapa de 64x32 neuronas en PyTorch.
 
-1. **CAGR (Tasa Compuesta de Crecimiento Anual):**
-   \[
-   CAGR = \left(\frac{V_{final}}{V_{inicial}}\right)^{\frac{252}{N_{dias}}} - 1
-   \]
-2. **Coeficiente de Sharpe:** Mide el exceso de rendimiento por unidad de volatilidad total.
-   \[
-   Sharpe = \frac{E[R] - R_f}{\sigma_{total}} \times \sqrt{252}
-   \]
-3. **Coeficiente de Sortino:** Mide el rendimiento ajustado únicamente por volatilidad bajista (*downside deviation*), ignorando la volatilidad al alza.
-   \[
-   Sortino = \frac{E[R] - R_f}{\sigma_{downside}} \times \sqrt{252}
-   \]
-4. **Maximum Drawdown (MDD %):** La peor caída de pico a valle en la curva de capital de la cuenta.
-   \[
-   MDD = \max \left( \frac{\text{Pico} - \text{Valle}}{\text{Pico}} \right)
-   \]
+### Sección 7: Análisis Técnico Avanzado (+100 Indicadores)
+- **Clases 35 a 40:** Implementación en Python de SMA, EMA, RSI, MACD, Bandas de Bollinger, ATR y SuperTrend.
 
-### 3.2 Indicadores Técnicos Avanzados
-- **Medias Móviles (SMA / EMA):** Filtros de tendencia que promedian los precios históricos.
-- **RSI (Relative Strength Index):** Oscilador de cantidad de movimiento entre 0 y 100 para evaluar sobrecompra (>70) o sobreventa (<30).
-- **MACD (Moving Average Convergence Divergence):** Divergencia de medias exponenciales de 12 y 26 periodos con línea de señal de 9 periodos.
-- **Bandas de Bollinger:** Envolventes a 2 desviaciones estándar de la SMA de 20 periodos para medir expansión y contracción de volatilidad.
-- **ATR (Average True Range):** Medición de la volatilidad absoluta en dólares del activo para ajustar el tamaño de posición y stop loss dinámico.
-- **SuperTrend:** Indicador de seguimiento de tendencia basado en ATR y canales de precio.
+### Sección 8: Análisis Fundamental y Valoración DCF / Fórmula Mágica
+- **Clases 41 a 45:** Proyección de Flujos Libres de Caja descontados (DCF), Fórmula Mágica de Joel Greenblatt (ROC + Earnings Yield) y Piotroski F-Score.
 
----
+### Sección 9: Procesamiento de Lenguaje Natural (NLP) y VADER Sentiment
+- **Clases 46 a 50:** Scraping de noticias financieras y clasificación VADER de polaridad compuesta (-1.0 a +1.0).
 
-## ⚙️ MÓDULO IV: Backtesting Realista, Análisis Fundamental y NLP
-
-### 4.1 Motor de Backtesting Vectorizado y Event-Driven
-Un motor de backtesting evalúa el rendimiento histórico de una estrategia. Para evitar resultados falsamente optimistas, el motor debe modelar:
-- **Comisiones de Transacción:** Costos fijos o porcentuales cobrados por el broker por cada contrato u orden ejecutada (ej. 0.1%).
-- **Deslizamiento (Slippage):** La diferencia de precio entre el momento en que se genera la señal y el precio de llenado real de la orden (ej. 0.05%).
-
-### 4.2 Análisis Fundamental e Integración de Value Investing
-- **Valor Intrínseco por Flujo de Caja Descontado (DCF):** Estimación del valor financiero proyectando los Flujos de Caja Libres (FCF) futuros a 5 años descontados con la tasa WACC (Weighted Average Cost of Capital) más el Valor Terminal de Gordon.
-- **Fórmula Mágica de Joel Greenblatt:** Selección cuantitativa de acciones ordenando el universo de inversión por la combinación de:
-  - *Earnings Yield:* \(\frac{\text{EBIT}}{\text{Enterprise Value}}\)
-  - *Return on Capital (ROC):* \(\frac{\text{EBIT}}{\text{Net Working Capital} + \text{Net Fixed Assets}}\)
-- **Piotroski F-Score:** Evaluación cuantitativa de 9 criterios de salud financiera.
-
-### 4.3 Análisis de Sentimiento con Procesamiento de Lenguaje Natural (NLP)
-Extracción de señales del mercado procesando fuentes de texto no estructuradas (noticias financieras, reportes trimestrales y redes sociales):
-- Limpieza y tokenización del texto.
-- Aplicación de **VADER (Valence Aware Dictionary and sEntiment Reasoner)** adaptado con léxico financiero para categorizar la polaridad en puntuaciones compuestas entre -1.0 (Bearish) y +1.0 (Bullish).
-
----
-
-## 🤖 MÓDULO V: Inteligencia Artificial, Machine Learning y Deep Learning
-
-### 5.1 ML No Supervisado: Regímenes de Mercado (HMM)
-Los mercados cambian constantemente de comportamiento. Los **Modelos de Márkov Ocultos (HMM / Gaussian Mixture Models)** identifican estados no observables (regímenes):
-- **Régimen 0 (Baja Volatilidad / Tendencia Alcista):** Ideal para estrategias de seguimiento de tendencia y compra de activos.
-- **Régimen 1 (Alta Volatilidad / Crisis o Crash):** Estado caracterizado por caídas abruptas donde el algoritmo debe desactivar compras o cambiar a cobertura.
-
-### 5.2 ML Supervisado: Clasificación y Regresión (Random Forest / XGBoost)
-Entrenamiento de algoritmos basados en ensembles de árboles de decisión utilizando *features* técnicas (RSI, MACD, ATR, Momentum) para predecir si el retorno en \(t+1\) será positivo (1) o negativo (0):
-- **Evaluación Out-of-Sample:** División estricta sin solapamiento temporal (80% Train / 20% Test) para evitar el sesgo de anticipación (*look-ahead bias*).
-- **Métricas:** Accuracy, Precision, Recall y F1-Score.
-
-### 5.3 Deep Learning / Redes Neuronales Multicapas (MLP)
-Uso de arquitecturas secuenciales compuestas por múltiples capas ocultas de neuronas con funciones de activación no lineales (ReLU) u optimizador Adam para aprender relaciones complejas en grandes volúmenes de datos financieros.
-
----
-
-## 🚀 MÓDULO VI: Sistema Integrado Unificado, Gestión de Riesgos y Fiscalidad
-
-### 6.1 Pipeline Unificado de Producción
-Orquestación en tiempo real de las 7 etapas:
-1. Conexión segura con la API del Broker.
-2. Captura de precios e información en tiempo real.
-3. Evaluación de sentimiento financiero (NLP).
-4. Cálculo de indicadores técnicos y detección de régimen HMM.
-5. Predicción con modelo de Machine Learning.
-6. Emisión de señal cuantitativa unificada.
-7. Envío y ejecución automatizada de la orden en el Broker.
-
-### 6.2 Gestión de Riesgo y Position Sizing
-- **Gestión por Riesgo Porcentual:** Determina la cantidad de acciones a comprar según la distancia al Stop Loss:
-  \[
-  \text{Tamaño de Posición} = \frac{\text{Capital Total} \times \text{Riesgo \%}}{\text{Precio de Entrada} - \text{Stop Loss}}
-  \]
-- **Criterio de Kelly:** Optimización del porcentaje de capital a arriesgar en cada operación para maximizar el crecimiento de la cuenta a largo plazo.
-
-### 6.3 Certificaciones Financieras y Entorno Regulatorio / Fiscal
-- **Certificaciones Financieras:** CFA (Análisis Financiero), FRM (Gestión de Riesgos), CQF (Finanzas Cuantitativas) y CMT (Análisis Técnico).
-- **Responsabilidad Fiscal:** Declaración de impuestos sobre ganancias de capital realizadas, deducción de comisiones operativas y firma del formulario W-8BEN para inversiones internacionales.
+### Sección 10 a 29: Desarrollo Integrado
+- **Márkov HMM, Random Forest, XGBoost, Deep Learning, Sistema Unificado (`main.py`), Gestión de Riesgo (Kelly & VaR), Cripto Binance API, Forex OANDA, Escáner S&P 500, Arbitraje Estadístico (Pair Trading), Regresión a la Media (OU), Momentum Donchian, Portafolios Markowitz, Filtros Kalman, Microestructura L2/L3, Scraping SEC EDGAR, Prop Trading, Certificaciones (CFA/FRM/CQF/CMT), Fiscalidad W-8BEN y Curso Intensivo de Python desde Cero.**
