@@ -1490,8 +1490,6 @@ const REMAINING_SECTIONS = [
   }
 ];
 
-COURSE_DATA.push(...REMAINING_SECTIONS);
-
 // App State
 let currentSectionIdx = 0;
 let currentLessonIdx = 0;
