@@ -411,9 +411,55 @@ if __name__ == "__main__":
         dur: "01:28",
         theory: `
           <h3>Transcripción Magistral y Desarrollo Teórico Completo (01:28 min)</h3>
-          <p>Exploración del ecosistema de software: Python 3.10+, Pandas, NumPy, Scikit-Learn, PyTorch, IBAPI y Binance.</p>
+          <p>En esta lección de 1 minuto y 28 segundos exploramos en detalle el ecosistema de software, librerías financieras y entornos de ejecución que componen la pila tecnológica (*stack tecnológico*) de un <b>Ingeniero Financiero / Trader Cuantitativo</b>.</p>
+
+          <div class="theory-callout">
+            <b>💡 Stack Tecnológico Cuantitativo e IA:</b><br>
+            - <b>Python 3.10+ & Anaconda:</b> Interpretación dinámica y entornos virtuales aislados.<br>
+            - <b>Pandas & NumPy:</b> DataFrames de series temporales e indexación DatetimeIndex.<br>
+            - <b>Scikit-Learn & PyTorch:</b> Machine Learning supervisado y Redes Neuronales Profundas (MLP).<br>
+            - <b>yfinance, IBAPI & Binance:</b> Conectores ETL de mercado e APIs de brokerage.
+          </div>
         `,
-        code: `print("Stack Cuantitativo: Python 3.10 + Anaconda + PyTorch + IBAPI")`
+        code: `# clase_09_tecnologias.py - Código Completo de la Clase 9
+import sys
+import platform
+
+class QuantTechStackInspector:
+    def __init__(self):
+        self.stack = {
+            "Python Core": ("sys", "Núcleo de Ejecución"),
+            "Pandas": ("pandas", "DataFrames & Series Temporales"),
+            "NumPy": ("numpy", "Cálculo Matricial Vectorizado"),
+            "Scikit-Learn": ("sklearn", "Machine Learning Supervisado"),
+            "PyTorch": ("torch", "Deep Learning & Redes Neuronales"),
+            "yFinance": ("yfinance", "Conector ETL Datos de Mercado"),
+            "Interactive Brokers API": ("ibapi", "Broker API Conector Institutional")
+        }
+
+    def inspect_stack(self):
+        print("=====================================================================")
+        print("  INSPECCIÓN DEL STACK TECNOLÓGICO QUANT E INTELIGENCIA ARTIFICIAL   ")
+        print("=====================================================================")
+        print(f" Intérprete Principal : Python v{sys.version.split()[0]} ({platform.system()})")
+        print("---------------------------------------------------------------------")
+        for tech, (mod_name, desc) in self.stack.items():
+            try:
+                mod = __import__(mod_name)
+                ver = getattr(mod, "__version__", "Instalado")
+                status = "[✓ INSTALADO]"
+            except ImportError:
+                ver = "N/A (Simulado)"
+                status = "[⚠ DISPONIBLE]"
+            print(f"  {status.ljust(15)} {tech.ljust(25)} (v{ver}) -> {desc}")
+        print("=====================================================================")
+
+def ejecutar_clase_09():
+    inspector = QuantTechStackInspector()
+    inspector.inspect_stack()
+
+if __name__ == "__main__":
+    ejecutar_clase_09()`
       },
       {
         id: 10,
